@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://brandoncandela.github.io/sitemap.xml
