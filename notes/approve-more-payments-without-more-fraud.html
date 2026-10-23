@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Approving More Payments Without Growing Fraud Losses | Brandon Candela</title>
+<meta name="description" content="A payments risk strategy case: comparing approval rates, fraud losses and manual review capacity, and why fully staffing the review queue lowered profit. By Brandon Candela.">
+<link rel="canonical" href="https://brandoncandela.github.io/notes/approve-more-payments-without-more-fraud.html">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Approving more payments without growing fraud losses">
+<meta property="og:description" content="Why fully staffing the review queue lowered profit in a payments risk case.">
+<meta property="og:image" content="https://brandoncandela.github.io/assets/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Approving more payments without growing fraud losses","datePublished":"2026-10-23","author":{"@type":"Person","name":"Brandon Candela","url":"https://brandoncandela.github.io/"}}</script>
+<link rel="stylesheet" href="/assets/notes.css">
+</head>
+<body>
+<nav><div><a href="/">Brandon Candela</a><a href="/#writing">All notes</a></div></nav>
+<article>
+  <div class="eyebrow">Payments · Risk strategy</div>
+  <h1>Approving more payments without growing fraud losses</h1>
+  <p class="lede">The strategy that earned the most only worked because half its review queue was being declined. Staffing up to clear the queue made it earn less.</p>
+  <p class="meta">October 2026 · 5 min read · Based on my <a href="/payments-strategy-lab/">Payments Strategy Lab</a> (fictional company, invented assumptions)</p>
+
+  <h2>The question</h2>
+  <p>A fictional payments platform processes 1,000,000 attempted payments a month at an $80 average ticket, with 1% of attempts fraudulent. It has a 12-person review team, enough for 10,800 manual reviews a month. The CEO wants to approve more legitimate customers. Which acceptance strategy should it pilot?</p>
+
+  <h2>Three strategies, side by side</h2>
+  <table>
+    <thead><tr><th>Strategy</th><th class="num">Good customers approved</th><th class="num">Fraud loss / mo</th><th class="num">Review coverage</th><th class="num">Contribution / mo</th></tr></thead>
+    <tbody>
+      <tr><td>Conservative</td><td class="num">91.7%</td><td class="num">$20,224</td><td class="num">100%</td><td class="num">$464,660</td></tr>
+      <tr class="pick"><td>Targeted review</td><td class="num">94.9%</td><td class="num">$7,950</td><td class="num">48.4%</td><td class="num">$479,342</td></tr>
+      <tr><td>Growth first</td><td class="num">97.7%</td><td class="num">$129,536</td><td class="num">100%</td><td class="num">$388,364</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Growth first</strong> approves the most good customers, but fraud losses rise more than sixfold over the conservative policy. The extra approvals don't come close to paying for them.</p>
+  <p><strong>Targeted review</strong> wins on contribution and cuts fraud losses the most. But look at review coverage: it sends 22,300 payments a month to a team that can review 10,800. The overflow, more than half the queue, is simply declined.</p>
+
+  <h2>So staff up?</h2>
+  <p>Covering the full queue takes 25 reviewers, 13 more. At full coverage, acceptance of good customers rises to 95.9%, but monthly contribution <em>falls</em> to about $412,000. That's below both the understaffed version and the conservative policy. In this model, the 13 extra salaries cost more than the margin on the additional approvals.</p>
+
+  <div class="callout"><p>The "best" strategy on a spreadsheet was quietly relying on declining customers it had flagged for review. A good recommendation names that dependency instead of hiding it.</p></div>
+
+  <h2>What I'd actually recommend</h2>
+  <ul>
+    <li><strong>Pilot targeted review</strong> on a slice of traffic with explicit guardrails: a loss ceiling, a customer-decline ceiling and a rollback owner.</li>
+    <li><strong>Fix the referral rate before adding headcount.</strong> Better rules or a model that sends fewer good customers to review beats hiring 13 people.</li>
+    <li><strong>Treat overflow declines as a customer-experience cost,</strong> not free fraud prevention, and track them separately.</li>
+    <li><strong>Wait for mature loss data.</strong> Chargebacks arrive late, so a pilot that looks great in week two may not in week ten.</li>
+  </ul>
+  <p>These numbers come from invented assumptions, not market benchmarks, and the model compares three fixed policies rather than optimizing. The reasoning carries over: approval rate, loss and operational capacity are one decision, not three.</p>
+
+  <div class="cta">
+    <p><strong>Change the assumptions yourself.</strong> Raise fraud incidence, resize the team and download a decision memo.</p>
+    <p><a href="/payments-strategy-lab/">Open the Payments Strategy Lab →</a> · <a href="https://github.com/brandoncandela/payments-strategy-lab">Model, methodology &amp; tests</a></p>
+  </div>
+</article>
+<footer>Brandon Candela, CAMS · AML, KYC and fraud investigations · <a href="/#contact">Get in touch</a>. A fictional consulting case, not a real client engagement.</footer>
+</body>
+</html>

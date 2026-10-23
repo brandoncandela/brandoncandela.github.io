@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Missing Isn't a Mismatch: Reviewing Screening Hits | Brandon Candela</title>
+<meta name="description" content="How to review an adverse media or sanctions screening hit: why missing identifiers are not mismatches, and how to document a defensible disposition. By Brandon Candela, CAMS.">
+<link rel="canonical" href="https://brandoncandela.github.io/notes/missing-is-not-a-mismatch.html">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Missing isn't a mismatch: how I review a screening hit">
+<meta property="og:description" content="Why missing identifiers are not mismatches in adverse media and sanctions screening.">
+<meta property="og:image" content="https://brandoncandela.github.io/assets/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Missing isn't a mismatch: how I review a screening hit","datePublished":"2026-10-23","author":{"@type":"Person","name":"Brandon Candela","url":"https://brandoncandela.github.io/"}}</script>
+<link rel="stylesheet" href="/assets/notes.css">
+</head>
+<body>
+<nav><div><a href="/">Brandon Candela</a><a href="/#writing">All notes</a></div></nav>
+<article>
+  <div class="eyebrow">Screening · Identity resolution</div>
+  <h1>Missing isn't a mismatch: how I review a screening hit</h1>
+  <p class="lede">The most common shortcut in name screening is treating "we don't know" as "it's not them." It's also one of the easiest to catch in QC.</p>
+  <p class="meta">October 2026 · 4 min read · Based on my <a href="https://github.com/brandoncandela/adverse-media-review-desk">Adverse Media</a> and <a href="https://github.com/brandoncandela/sanctions-review-desk">Sanctions</a> Review Desks</p>
+
+  <h2>The shortcut</h2>
+  <p>A customer named in your records hits a news article or a sanctions list entry. The article gives a name and a city but no date of birth. Under queue pressure it's tempting to write "DOB does not match, false positive." But nothing contradicted the DOB. It simply wasn't there.</p>
+
+  <h2>Four states, not two</h2>
+  <p>In the adverse media desk I compare each identifier and record one of four states rather than a simple match or no-match. The sanctions desk applies the same idea: each attribute supports, challenges or leaves the match unresolved.</p>
+  <table>
+    <thead><tr><th>State</th><th>Meaning</th><th>Effect on the decision</th></tr></thead>
+    <tbody>
+      <tr><td>Match</td><td>Both sources agree</td><td>Supports a possible match</td></tr>
+      <tr><td>Variant</td><td>Plausibly the same (transliteration, nickname, partial date)</td><td>Supports, with a note on why</td></tr>
+      <tr><td>Conflict</td><td>Both sources have a value and they disagree</td><td>Challenges the match</td></tr>
+      <tr><td>Unknown</td><td>One source has no value</td><td>Neither. It's an evidence gap to close or document</td></tr>
+    </tbody>
+  </table>
+  <p>Only a <strong>conflict</strong> is evidence against a match. A file full of unknowns isn't a cleared alert. It's an incomplete one.</p>
+
+  <div class="callout"><p>A defensible "false positive" names the specific identifier that conflicts. If you can't point to one, you have a lead that still needs work, not a closed alert.</p></div>
+
+  <h2>When "matching" still escalates</h2>
+  <p>The reverse matters too. In the adverse media desk's SQL triage view, a matching name and date of birth with a <em>different</em> location still routes to further review rather than auto-confirming. People move, articles get details wrong, and two people can share a name and a birthday. Agreement on two fields is strong, but a real conflict on a third deserves an explanation.</p>
+
+  <h2>What a good disposition records</h2>
+  <ul>
+    <li>Which identifiers were compared, with the state of each</li>
+    <li>The source for each value, and how reliable it is</li>
+    <li>Alternative explanations considered (common name, outdated article, family member)</li>
+    <li>What would change the decision, and any information request sent</li>
+    <li>A snapshot QC can review, so later edits don't silently rewrite the decision</li>
+  </ul>
+  <p>This is the same discipline I applied in KYC and EDD reviews at IBM Promontory and Deutsche Bank. The tools just make each step visible and checkable.</p>
+
+  <div class="cta">
+    <p><strong>See it in practice.</strong> Both desks use fictional cases and run in the browser.</p>
+    <p><a href="https://brandon-adverse-media-review-desk.brandon-d-candela.chatgpt.site/">Adverse Media Review Desk →</a> · <a href="https://brandon-sanctions-review-desk.brandon-d-candela.chatgpt.site/">Sanctions Review Desk →</a></p>
+  </div>
+</article>
+<footer>Brandon Candela, CAMS · AML, KYC and fraud investigations · <a href="/#contact">Get in touch</a>. Fictional data; educational work samples, not sanctions determinations.</footer>
+</body>
+</html>

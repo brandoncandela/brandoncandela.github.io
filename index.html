@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://brandoncandela.github.io/">
 <meta property="og:title" content="Brandon Candela | AML Investigations & Financial Crime Portfolio">
-<meta property="og:description" content="Follow the evidence. Explain the decision. Five working AML investigation demos, plus experience at KPMG, IBM Promontory and Deutsche Bank.">
+<meta property="og:description" content="Follow the evidence. Explain the decision. Seven working AML and fintech risk demos, plus experience at KPMG, IBM Promontory and Deutsche Bank.">
 <meta property="og:image" content="https://brandoncandela.github.io/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -151,6 +151,14 @@ pre { margin: 14px 0 10px; padding: 22px; background: #0a1720; border: 1px solid
 .principles article { padding: 24px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
 .principles p { margin: 0; font-size: 16px; }
 
+/* Writing */
+.notes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 26px; }
+.note { display: flex; flex-direction: column; padding: 24px; border: 1px solid #34434e; border-radius: 14px; background: linear-gradient(160deg, var(--surface-2), var(--surface)); color: inherit; text-decoration: none; transition: transform .2s, border-color .2s; }
+.note:hover { transform: translateY(-4px); border-color: #70908e; color: inherit; }
+.note h3 { margin: 10px 0 8px; }
+.note p { margin: 0 0 16px; font-size: 16px; }
+.note .read { margin-top: auto; color: var(--teal); font-weight: 650; font-size: 15px; }
+
 /* Experience */
 .timeline { border-left: 2px solid #42605c; padding-left: 28px; margin-top: 28px; }
 .timeline article { padding: 20px 0; border-bottom: 1px solid #2d414e; position: relative; }
@@ -195,7 +203,7 @@ footer p { margin: 0; max-width: 640px; color: inherit; }
   .sql, .two-col, .community { grid-template-columns: 1fr; }
   .project.featured { grid-template-columns: 1fr; }
   .featured .shot { aspect-ratio: 16 / 10; min-height: 0; border-right: 0; border-bottom: 1px solid #34434e; }
-  .principles { grid-template-columns: 1fr; }
+  .principles, .notes { grid-template-columns: 1fr; }
 }
 @media (max-width: 700px) {
   .nav-links a:not(.nav-cta) { display: none; }
@@ -224,7 +232,7 @@ footer p { margin: 0; max-width: 640px; color: inherit; }
       <a href="#projects">Projects</a>
       <a href="#sql">SQL</a>
       <a href="#experience">Experience</a>
-      <a href="#community">Community</a>
+      <a href="#writing">Writing</a>
       <a class="nav-cta" href="#contact">Contact</a>
     </div>
   </div>
@@ -253,21 +261,21 @@ footer p { margin: 0; max-width: 640px; color: inherit; }
   </div>
 
   <section id="projects">
-    <div class="eyebrow">Five working demos</div>
+    <div class="eyebrow">Seven working demos</div>
     <h2>From an alert to a reviewable investigation</h2>
     <p class="lede">Each project tackles a different part of an analyst's workflow. Try it in your browser, then inspect the code and methodology.</p>
     <div class="filters" role="group" aria-label="Filter projects">
       <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
-      <button class="chip" type="button" data-filter="fraud" aria-pressed="false">Fraud</button>
+      <button class="chip" type="button" data-filter="fraud" aria-pressed="false">Fraud &amp; payments</button>
       <button class="chip" type="button" data-filter="sql" aria-pressed="false">Adverse media &amp; SQL</button>
       <button class="chip" type="button" data-filter="sanctions" aria-pressed="false">Sanctions</button>
       <button class="chip" type="button" data-filter="crypto" aria-pressed="false">Crypto tracing</button>
     </div>
-    <p class="count" id="project-count" aria-live="polite">Showing 5 projects</p>
+    <p class="count" id="project-count" aria-live="polite">Showing 7 projects</p>
 
     <div class="projects">
       <article class="project featured" data-category="fraud">
-        <a class="shot" href="https://brandon-fraud-intelligence-control-lab.brandon-d-candela.chatgpt.site/" tabindex="-1" aria-hidden="true">
+        <a class="shot" href="/fraud-intelligence-control-lab/" tabindex="-1" aria-hidden="true">
           <span class="badge">NEWEST</span>
           <img src="assets/projects/fraud-intelligence-control-lab.jpg" width="720" height="450" alt="" loading="lazy" decoding="async">
         </a>
@@ -276,7 +284,33 @@ footer p { margin: 0; max-width: 640px; color: inherit; }
           <h3>Fraud Intelligence &amp; Control Lab</h3>
           <p>Investigate a synthetic fraud spike, tune the control, then explain the risk, the analyst workload and the next action.</p>
           <details><summary>What to explore</summary><p>Adjust the alert threshold, compare precision and recall, inspect a shared-device network, review control-health signals and write an executive recommendation.</p></details>
-          <div class="links"><a href="https://brandon-fraud-intelligence-control-lab.brandon-d-candela.chatgpt.site/">Try the demo →</a><a href="https://github.com/brandoncandela/fraud-intelligence-control-lab">Source, SQL &amp; tests</a></div>
+          <div class="links"><a href="/fraud-intelligence-control-lab/">Try the demo →</a><a href="https://github.com/brandoncandela/fraud-intelligence-control-lab">Source, SQL &amp; tests</a></div>
+        </div>
+      </article>
+
+      <article class="project" data-category="fraud">
+        <a class="shot" href="/payments-strategy-lab/" tabindex="-1" aria-hidden="true">
+          <img src="assets/projects/payments-strategy-lab.jpg" width="720" height="450" alt="" loading="lazy" decoding="async">
+        </a>
+        <div class="project-body">
+          <div class="tags">UNIT ECONOMICS · FRAUD LOSS · STRATEGY</div>
+          <h3>Payments Strategy Lab</h3>
+          <p>Approve more good payments without growing losses. Compare three strategies, stress the assumptions and write a 90-day pilot memo.</p>
+          <details><summary>What to explore</summary><p>Change fraud incidence, ticket size and team size. See why the most profitable policy depends on review capacity, and whether staffing up pays for itself.</p></details>
+          <div class="links"><a href="/payments-strategy-lab/">Try the demo →</a><a href="https://github.com/brandoncandela/payments-strategy-lab">Model &amp; tests</a></div>
+        </div>
+      </article>
+
+      <article class="project" data-category="sql">
+        <a class="shot" href="/sql-fincrime-lab/" tabindex="-1" aria-hidden="true">
+          <img src="assets/projects/sql-fincrime-lab.jpg" width="720" height="450" alt="" loading="lazy" decoding="async">
+        </a>
+        <div class="project-body">
+          <div class="tags">SQLITE · TRANSACTION MONITORING · QC</div>
+          <h3>SQL Financial Crime Lab</h3>
+          <p>Tune three AML monitoring rules with real SQLite running in your browser, and see exactly which seeded cases each change would miss.</p>
+          <details><summary>What to explore</summary><p>Adjust rapid-movement, customer-profile and many-to-one thresholds, inspect the exact SQL behind each alert, then write an assessment and role-play QC.</p></details>
+          <div class="links"><a href="/sql-fincrime-lab/">Try the demo →</a><a href="https://github.com/brandoncandela/sql-fincrime-lab">SQL, schema &amp; tests</a></div>
         </div>
       </article>
 
@@ -307,7 +341,7 @@ footer p { margin: 0; max-width: 640px; color: inherit; }
       </article>
 
       <article class="project" data-category="crypto">
-        <a class="shot" href="https://brandon-usdt-workspace.brandon-d-candela.chatgpt.site/" tabindex="-1" aria-hidden="true">
+        <a class="shot" href="/trace-desk-aml-workspace/" tabindex="-1" aria-hidden="true">
           <img src="assets/projects/usdt-workspace.jpg" width="720" height="450" alt="" loading="lazy" decoding="async">
         </a>
         <div class="project-body">
@@ -315,12 +349,12 @@ footer p { margin: 0; max-width: 640px; color: inherit; }
           <h3>Trace Desk AML Workspace</h3>
           <p>Review bounded USDT activity with pinned evidence, portable case files and analyst reasoning.</p>
           <details><summary>What to explore</summary><p>Follow the evidence across a bounded transaction review and preserve the case for another analyst.</p></details>
-          <div class="links"><a href="https://brandon-usdt-workspace.brandon-d-candela.chatgpt.site/">Try the demo →</a><a href="https://github.com/brandoncandela/trace-desk-aml-workspace">Code &amp; methodology</a></div>
+          <div class="links"><a href="/trace-desk-aml-workspace/">Try the demo →</a><a href="https://github.com/brandoncandela/trace-desk-aml-workspace">Code &amp; methodology</a></div>
         </div>
       </article>
 
       <article class="project" data-category="crypto">
-        <a class="shot" href="https://brandon-usdt-investigator.brandon-d-candela.chatgpt.site/" tabindex="-1" aria-hidden="true">
+        <a class="shot" href="/usdt-investigator/" tabindex="-1" aria-hidden="true">
           <img src="assets/projects/usdt-investigator.jpg" width="720" height="450" alt="" loading="lazy" decoding="async">
         </a>
         <div class="project-body">
@@ -328,7 +362,7 @@ footer p { margin: 0; max-width: 640px; color: inherit; }
           <h3>Trace Desk: USDT Investigator</h3>
           <p>Explore a saved 15-address Ethereum case with transaction evidence, a relationship graph and a written report.</p>
           <details><summary>What to explore</summary><p>Inspect transaction hashes, transfer amounts and timing. Consider alternative explanations before drawing conclusions.</p></details>
-          <div class="links"><a href="https://brandon-usdt-investigator.brandon-d-candela.chatgpt.site/">Try the demo →</a><a href="https://github.com/brandoncandela/usdt-investigator">Code &amp; methodology</a></div>
+          <div class="links"><a href="/usdt-investigator/">Try the demo →</a><a href="https://github.com/brandoncandela/usdt-investigator">Code &amp; methodology</a></div>
         </div>
       </article>
     </div>
@@ -371,6 +405,17 @@ GROUP BY disposition;</code></pre>
       <article><h3>Built for the next reviewer</h3><p>Rationale, alternative explanations and a clear handoff to QC, so someone else can check the decision.</p></article>
     </div>
     <p class="small" style="margin-top:18px">I use AI-assisted development to turn AML workflow ideas into tools you can inspect. Each project documents its scope and limits, and none makes an automatic finding of wrongdoing.</p>
+  </section>
+
+  <section id="writing">
+    <div class="eyebrow">Writing</div>
+    <h2>Notes from the work.</h2>
+    <p class="lede">Short case studies on the judgment behind each tool: the tradeoffs, what the numbers hide and what I'd do next.</p>
+    <div class="notes">
+      <a class="note" href="/notes/tuning-a-fraud-threshold.html"><span class="tags">FRAUD · CONTROL TUNING</span><h3>Tuning a fraud threshold without drowning your analysts</h3><p>Why the setting with 100% precision quietly missed two of seven fraud cases.</p><span class="read">Read · 4 min →</span></a>
+      <a class="note" href="/notes/approve-more-payments-without-more-fraud.html"><span class="tags">PAYMENTS · RISK STRATEGY</span><h3>Approving more payments without growing fraud losses</h3><p>Why staffing up to clear the review queue made the best strategy earn less.</p><span class="read">Read · 5 min →</span></a>
+      <a class="note" href="/notes/missing-is-not-a-mismatch.html"><span class="tags">SCREENING · IDENTITY</span><h3>Missing isn't a mismatch: how I review a screening hit</h3><p>Why "we don't know" isn't the same as "it's not them," and what a defensible disposition records.</p><span class="read">Read · 4 min →</span></a>
+    </div>
   </section>
 
   <section id="experience">

@@ -1,1 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://brandoncandela.github.io/</loc></url></urlset>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://brandoncandela.github.io/</loc><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://brandoncandela.github.io/notes/tuning-a-fraud-threshold.html</loc><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://brandoncandela.github.io/notes/approve-more-payments-without-more-fraud.html</loc><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://brandoncandela.github.io/notes/missing-is-not-a-mismatch.html</loc><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://brandoncandela.github.io/fraud-intelligence-control-lab/</loc></url>
+  <url><loc>https://brandoncandela.github.io/payments-strategy-lab/</loc></url>
+  <url><loc>https://brandoncandela.github.io/sql-fincrime-lab/</loc></url>
+  <url><loc>https://brandoncandela.github.io/trace-desk-aml-workspace/</loc></url>
+  <url><loc>https://brandoncandela.github.io/usdt-investigator/</loc></url>
+</urlset>

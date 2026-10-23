@@ -1,0 +1,43 @@
+:root {
+  color-scheme: dark;
+  --bg: #0c131c;
+  --surface: #131e29;
+  --line: #2b3a46;
+  --ink: #edf2f2;
+  --muted: #a9bac5;
+  --teal: #71ddc4;
+  --gold: #d2b078;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: radial-gradient(ellipse at 85% 0%, #1e3541 0, transparent 45%), var(--bg);
+  font: 18px/1.75 Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--teal); text-underline-offset: 4px; }
+a:hover { color: #fff; }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+nav { border-bottom: 1px solid var(--line); }
+nav div { max-width: 720px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+nav a { color: var(--ink); text-decoration: none; font-weight: 750; }
+nav a + a { color: var(--gold); font-weight: 650; font-size: 15px; }
+article { max-width: 720px; margin: 0 auto; padding: 56px 24px 24px; }
+.eyebrow { font-size: 12px; font-weight: 750; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); }
+h1 { font-size: clamp(34px, 5vw, 50px); line-height: 1.1; letter-spacing: -.035em; margin: 14px 0 18px; }
+h2 { font-size: 26px; line-height: 1.25; letter-spacing: -.02em; margin: 44px 0 10px; }
+p, li { color: #c9d6dd; }
+.lede { font-size: 21px; color: var(--muted); }
+.meta { font-size: 14px; color: #8ea3ae; border-bottom: 1px solid var(--line); padding-bottom: 24px; }
+table { width: 100%; border-collapse: collapse; margin: 22px 0; font-size: 16px; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+th { color: var(--gold); font-weight: 650; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+tr.pick td { background: #102824; }
+.callout { margin: 28px 0; padding: 20px 24px; border-left: 3px solid var(--teal); background: var(--surface); border-radius: 0 12px 12px 0; }
+.callout p { margin: 0; color: var(--ink); }
+.cta { margin: 44px 0 0; padding: 26px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+.cta p { margin: 0 0 8px; }
+footer { max-width: 720px; margin: 40px auto 0; padding: 24px 24px 48px; border-top: 1px solid var(--line); font-size: 14px; color: #8ea3ae; }
+@media (max-width: 600px) { table { font-size: 14px; } th, td { padding: 8px 6px; } }

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tuning a Fraud Threshold Without Drowning Your Analysts | Brandon Candela</title>
+<meta name="description" content="Why 100% precision can be the wrong goal for a fraud control: a worked example of threshold tuning, recall, and analyst capacity from Brandon Candela's Fraud Intelligence Lab.">
+<link rel="canonical" href="https://brandoncandela.github.io/notes/tuning-a-fraud-threshold.html">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tuning a fraud threshold without drowning your analysts">
+<meta property="og:description" content="Why 100% precision can be the wrong goal for a fraud control.">
+<meta property="og:image" content="https://brandoncandela.github.io/assets/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Tuning a fraud threshold without drowning your analysts","datePublished":"2026-10-23","author":{"@type":"Person","name":"Brandon Candela","url":"https://brandoncandela.github.io/"}}</script>
+<link rel="stylesheet" href="/assets/notes.css">
+</head>
+<body>
+<nav><div><a href="/">Brandon Candela</a><a href="/#writing">All notes</a></div></nav>
+<article>
+  <div class="eyebrow">Fraud · Control tuning</div>
+  <h1>Tuning a fraud threshold without drowning your analysts</h1>
+  <p class="lede">The setting with perfect precision looked like the safe choice. It quietly missed two of the seven accounts that needed review.</p>
+  <p class="meta">October 2026 · 4 min read · Based on my <a href="/fraud-intelligence-control-lab/">Fraud Intelligence &amp; Control Lab</a> (synthetic data)</p>
+
+  <h2>The setup</h2>
+  <p>A payments platform sees a possible fraud spike. The lab models it with 60 synthetic accounts, 3,771 transactions and 64 devices. SQL features feed a risk score per account: distinct inbound senders in 24 hours, rapid outbound movement, new foreign devices and shared-device links. Seven accounts are seeded as review-worthy. The review team can work about eight alerts a day.</p>
+  <p>The question a fraud lead actually faces: <strong>where do we set the alert threshold?</strong></p>
+
+  <h2>What each threshold buys you</h2>
+  <table>
+    <thead><tr><th>Threshold</th><th class="num">Alerts</th><th class="num">Precision</th><th class="num">Recall</th><th>Capacity</th></tr></thead>
+    <tbody>
+      <tr><td>20</td><td class="num">10</td><td class="num">70.0%</td><td class="num">100%</td><td>Over</td></tr>
+      <tr class="pick"><td>30–40</td><td class="num">8</td><td class="num">87.5%</td><td class="num">100%</td><td>Within</td></tr>
+      <tr><td>50+</td><td class="num">5</td><td class="num">100%</td><td class="num">71.4%</td><td>Within</td></tr>
+    </tbody>
+  </table>
+  <p>At 50 and above, every alert is a true positive. On a dashboard that reads as a clean, efficient control. But two of the seven review-worthy accounts never reach an analyst, and nobody sees the ones you didn't alert on.</p>
+
+  <div class="callout"><p>Precision tells you how much analyst time you waste. Recall tells you how much risk you let through. A fraud control has to be judged on both, and on whether the team can actually work the queue.</p></div>
+
+  <h2>Why I'd pick 40</h2>
+  <p>At 40 the queue is eight alerts, exactly the team's daily capacity. It catches all seven review-worthy accounts at the cost of one benign lookalike. Dropping to 20 adds two more false positives and pushes the team over capacity. Once a queue overflows, real cases wait behind noise.</p>
+  <p>The lookalike is also useful. It shares surface features with the fraud cluster, so reviewing it teaches the team what a false positive looks like here. That's input for the next round of feature work.</p>
+
+  <h2>What I'd check before shipping it</h2>
+  <ul>
+    <li><strong>Stability:</strong> does 40 still fit capacity in a heavier week, or does it need a volume-based guardrail?</li>
+    <li><strong>Single signals:</strong> a shared device is a lead, not proof. Several legitimate users can sit behind one household device or a business network.</li>
+    <li><strong>Label maturity:</strong> recall is only as good as your labels. Some fraud surfaces weeks later as chargebacks.</li>
+    <li><strong>Monitoring:</strong> track alert rate and data quality weekly, so a broken feed doesn't look like a quiet week.</li>
+  </ul>
+
+  <div class="cta">
+    <p><strong>Try it yourself.</strong> Move the threshold slider and watch precision, recall and the queue change.</p>
+    <p><a href="/fraud-intelligence-control-lab/">Open the Fraud Intelligence Lab →</a> · <a href="https://github.com/brandoncandela/fraud-intelligence-control-lab">Python, SQL &amp; tests</a></p>
+  </div>
+</article>
+<footer>Brandon Candela, CAMS · AML, KYC and fraud investigations · <a href="/#contact">Get in touch</a>. Synthetic data; an educational work sample, not a production system.</footer>
+</body>
+</html>
