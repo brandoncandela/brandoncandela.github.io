@@ -37,3 +37,8 @@ This site is a recruiter-facing financial crime portfolio. It should feel like a
 - Do not use monospace type as decoration.
 - Keep all interactive targets at least 44px high and preserve visible keyboard focus.
 - Maintain a useful reduced-motion experience rather than globally collapsing every transition.
+
+## Experience and motion
+
+- Lead each role with a documented contribution or result. Expand into context, actions and delivery through native disclosures; do not invent metrics or employer-specific tool usage.
+- Use short, user-triggered document reveals for experience stories and SQL examples. Rotate disclosure chevrons to confirm state. Keep content visible without JavaScript and skip spatial reveals when reduced motion is requested.
