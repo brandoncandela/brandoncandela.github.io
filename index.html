@@ -62,7 +62,7 @@
     <div class="section-intro">
       <div>
         <h2>Selected financial crime work</h2>
-        <p class="lede">Eight working demos spanning crypto monitoring, fraud controls, SQL, sanctions and adverse media. Each one turns an alert into evidence another reviewer can test.</p>
+        <p class="lede">Three featured work samples connect financial crime judgment with Python, SQL and control testing. Compare risk capture, review workload and missed cases before recommending a change. Five additional projects explore related workflows.</p>
       </div>
     </div>
     <div class="filters" role="group" aria-label="Filter projects">
@@ -77,15 +77,14 @@
     <div class="projects">
       <article class="project flagship" data-category="crypto">
         <a class="shot" href="/crypto-exchange-monitoring-lab/" tabindex="-1" aria-hidden="true">
-          <span class="badge">NEWEST</span>
           <img src="assets/projects/crypto-exchange-monitoring-lab.jpg" width="720" height="450" alt="" loading="lazy" decoding="async">
         </a>
         <div class="project-body">
           <div class="tags">PYTHON · SQL · OFAC · TRON USDT</div>
           <h3>Crypto Exchange Monitoring Lab</h3>
-          <p>Screen a fictional exchange's deposits and withdrawals against every crypto wallet on the OFAC list and the real wallets that traded USDT with them.</p>
-          <p class="decision"><strong>Decision supported</strong> Decide which transfers to stop and review, and tell real sanctions exposure apart from customers whose normal business only looks risky.</p>
-          <details><summary>Inside the workflow</summary><p>Six SQL rules flag direct and one-hop sanctions exposure, pass-through, structuring under the $3,000 Travel Rule threshold, fan-out and missing recipient details. Work each alert, make a call, then check the answer key.</p></details>
+          <p>Review fictional exchange activity against a saved public OFAC and Tron snapshot. Six SQL controls make sanctions exposure and behavioral signals inspectable.</p>
+          <p class="decision"><strong>Decision supported</strong> Evaluate a control change using customer and alert metrics, missed cases and explicit workload assumptions.</p>
+          <details><summary>Inside the workflow</summary><p>Compare original fixtures with a separate challenge set, inspect overlapping typologies and export the evidence. Synthetic labels measure fixture behavior, not production accuracy. Public wallet links do not identify fictional customers.</p></details>
           <div class="links"><a href="/crypto-exchange-monitoring-lab/">Try the demo →</a><a href="https://github.com/brandoncandela/crypto-exchange-monitoring-lab">Python, SQL &amp; tests</a></div>
         </div>
       </article>
@@ -104,19 +103,6 @@
         </div>
       </article>
 
-      <article class="project compact" data-category="fraud">
-        <a class="shot" href="/payments-strategy-lab/" tabindex="-1" aria-hidden="true">
-          <img src="assets/projects/payments-strategy-lab.jpg" width="720" height="450" alt="" loading="lazy" decoding="async">
-        </a>
-        <div class="project-body">
-          <div class="tags">UNIT ECONOMICS · FRAUD LOSS · STRATEGY</div>
-          <h3>Payments Strategy Lab</h3>
-          <p>Approve more good payments without growing losses. Compare three strategies, stress the assumptions and write a 90-day pilot memo.</p>
-          <details><summary>Inside the workflow</summary><p>Change fraud incidence, ticket size and team size. See why the most profitable policy depends on review capacity, and whether staffing up pays for itself.</p></details>
-          <div class="links"><a href="/payments-strategy-lab/">Try the demo →</a><a href="https://github.com/brandoncandela/payments-strategy-lab">Model &amp; tests</a></div>
-        </div>
-      </article>
-
       <article class="project flagship" data-category="sql">
         <a class="shot" href="/sql-fincrime-lab/" tabindex="-1" aria-hidden="true">
           <img src="assets/projects/sql-fincrime-lab.jpg" width="720" height="450" alt="" loading="lazy" decoding="async">
@@ -128,6 +114,22 @@
           <p class="decision"><strong>Decision supported</strong> Test rule changes against known cases and document what improved, what was missed and why.</p>
           <details><summary>Inside the workflow</summary><p>Adjust rapid-movement, customer-profile and many-to-one thresholds, inspect the exact SQL behind each alert, then write an assessment and role-play QC.</p></details>
           <div class="links"><a href="/sql-fincrime-lab/">Try the demo →</a><a href="https://github.com/brandoncandela/sql-fincrime-lab">SQL, schema &amp; tests</a></div>
+        </div>
+      </article>
+    </div>
+
+    <h2 id="additional-projects-heading" class="additional-heading">Additional Projects</h2>
+    <div class="projects" id="additional-projects">
+      <article class="project compact" data-category="fraud">
+        <a class="shot" href="/payments-strategy-lab/" tabindex="-1" aria-hidden="true">
+          <img src="assets/projects/payments-strategy-lab.jpg" width="720" height="450" alt="" loading="lazy" decoding="async">
+        </a>
+        <div class="project-body">
+          <div class="tags">UNIT ECONOMICS · FRAUD LOSS · STRATEGY</div>
+          <h3>Payments Strategy Lab</h3>
+          <p>Approve more good payments without growing losses. Compare three strategies, stress the assumptions and write a 90-day pilot memo.</p>
+          <details><summary>Inside the workflow</summary><p>Change fraud incidence, ticket size and team size. See why the most profitable policy depends on review capacity, and whether staffing up pays for itself.</p></details>
+          <div class="links"><a href="/payments-strategy-lab/">Try the demo →</a><a href="https://github.com/brandoncandela/payments-strategy-lab">Model &amp; tests</a></div>
         </div>
       </article>
 
@@ -144,7 +146,7 @@
         </div>
       </article>
 
-      <article class="project flagship image-right" data-category="sanctions">
+      <article class="project compact" data-category="sanctions">
         <a class="shot" href="/sanctions-review-desk/" tabindex="-1" aria-hidden="true">
           <img src="assets/projects/sanctions-review-desk.jpg" width="720" height="450" alt="" loading="lazy" decoding="async">
         </a>
@@ -359,6 +361,7 @@ filters.forEach(button => button.addEventListener('click', () => {
     if (!card.hidden) count++;
   });
   document.getElementById('project-count').textContent = 'Showing ' + count + ' project' + (count === 1 ? '' : 's');
+  document.getElementById('additional-projects-heading').hidden = ![...document.querySelectorAll('#additional-projects [data-category]')].some(card => !card.hidden);
 }));
 
 const queries = {
