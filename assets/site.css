@@ -213,6 +213,7 @@ section { padding-top: var(--space-8); }
 .chip[aria-pressed="true"] { border-color: var(--signal); background: var(--signal); color: var(--signal-ink); }
 .count { margin: 0 0 22px; color: var(--subtle); font-size: 0.82rem; }
 .projects { border-bottom: 1px solid var(--line); }
+.additional-heading { margin-top: 56px; }
 .project {
   border-top: 1px solid var(--line);
   transition: background-color 180ms ease-out;
