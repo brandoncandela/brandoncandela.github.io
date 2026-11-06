@@ -1,0 +1,5 @@
+theme/node_modules/
+theme/dist/
+theme/.astro/
+.codex/
+.impeccable/review/

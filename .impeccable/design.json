@@ -1,0 +1,305 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-06T14:09:39.112488+00:00",
+  "title": "Design System: Brandon Candela Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "canvas": {
+        "role": "neutral",
+        "displayName": "Canvas",
+        "canonical": "#f5f5f7",
+        "tonalRamp": [
+          "oklch(15% 0.005 280)",
+          "oklch(26% 0.005 280)",
+          "oklch(38% 0.005 280)",
+          "oklch(49% 0.005 280)",
+          "oklch(61% 0.005 280)",
+          "oklch(72% 0.005 280)",
+          "oklch(84% 0.005 280)",
+          "oklch(95% 0.005 280)"
+        ]
+      },
+      "canvas-deep": {
+        "role": "neutral",
+        "displayName": "Canvas Deep",
+        "canonical": "#edf2fa",
+        "tonalRamp": [
+          "oklch(15% 0.005 280)",
+          "oklch(26% 0.005 280)",
+          "oklch(38% 0.005 280)",
+          "oklch(49% 0.005 280)",
+          "oklch(61% 0.005 280)",
+          "oklch(72% 0.005 280)",
+          "oklch(84% 0.005 280)",
+          "oklch(95% 0.005 280)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "oklch(15% 0.005 280)",
+          "oklch(26% 0.005 280)",
+          "oklch(38% 0.005 280)",
+          "oklch(49% 0.005 280)",
+          "oklch(61% 0.005 280)",
+          "oklch(72% 0.005 280)",
+          "oklch(84% 0.005 280)",
+          "oklch(95% 0.005 280)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#1d1d1f",
+        "tonalRamp": [
+          "oklch(15% 0.005 280)",
+          "oklch(26% 0.005 280)",
+          "oklch(38% 0.005 280)",
+          "oklch(49% 0.005 280)",
+          "oklch(61% 0.005 280)",
+          "oklch(72% 0.005 280)",
+          "oklch(84% 0.005 280)",
+          "oklch(95% 0.005 280)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted",
+        "canonical": "#55555d",
+        "tonalRamp": [
+          "oklch(15% 0.005 280)",
+          "oklch(26% 0.005 280)",
+          "oklch(38% 0.005 280)",
+          "oklch(49% 0.005 280)",
+          "oklch(61% 0.005 280)",
+          "oklch(72% 0.005 280)",
+          "oklch(84% 0.005 280)",
+          "oklch(95% 0.005 280)"
+        ]
+      },
+      "subtle": {
+        "role": "neutral",
+        "displayName": "Subtle",
+        "canonical": "#61616a",
+        "tonalRamp": [
+          "oklch(15% 0.005 280)",
+          "oklch(26% 0.005 280)",
+          "oklch(38% 0.005 280)",
+          "oklch(49% 0.005 280)",
+          "oklch(61% 0.005 280)",
+          "oklch(72% 0.005 280)",
+          "oklch(84% 0.005 280)",
+          "oklch(95% 0.005 280)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Line",
+        "canonical": "#dedee4",
+        "tonalRamp": [
+          "oklch(15% 0.005 280)",
+          "oklch(26% 0.005 280)",
+          "oklch(38% 0.005 280)",
+          "oklch(49% 0.005 280)",
+          "oklch(61% 0.005 280)",
+          "oklch(72% 0.005 280)",
+          "oklch(84% 0.005 280)",
+          "oklch(95% 0.005 280)"
+        ]
+      },
+      "line-strong": {
+        "role": "neutral",
+        "displayName": "Line Strong",
+        "canonical": "#b6bac4",
+        "tonalRamp": [
+          "oklch(15% 0.005 280)",
+          "oklch(26% 0.005 280)",
+          "oklch(38% 0.005 280)",
+          "oklch(49% 0.005 280)",
+          "oklch(61% 0.005 280)",
+          "oklch(72% 0.005 280)",
+          "oklch(84% 0.005 280)",
+          "oklch(95% 0.005 280)"
+        ]
+      },
+      "signal": {
+        "role": "primary",
+        "displayName": "Signal",
+        "canonical": "#0066cc",
+        "tonalRamp": [
+          "oklch(15% 0.12 260)",
+          "oklch(26% 0.12 260)",
+          "oklch(38% 0.12 260)",
+          "oklch(49% 0.12 260)",
+          "oklch(61% 0.12 260)",
+          "oklch(72% 0.12 260)",
+          "oklch(84% 0.12 260)",
+          "oklch(95% 0.12 260)"
+        ]
+      },
+      "signal-strong": {
+        "role": "primary",
+        "displayName": "Signal Strong",
+        "canonical": "#005bb8",
+        "tonalRamp": [
+          "oklch(15% 0.12 260)",
+          "oklch(26% 0.12 260)",
+          "oklch(38% 0.12 260)",
+          "oklch(49% 0.12 260)",
+          "oklch(61% 0.12 260)",
+          "oklch(72% 0.12 260)",
+          "oklch(84% 0.12 260)",
+          "oklch(95% 0.12 260)"
+        ]
+      },
+      "sphere": {
+        "role": "primary",
+        "displayName": "Sphere",
+        "canonical": "#0066ff",
+        "tonalRamp": [
+          "oklch(15% 0.12 260)",
+          "oklch(26% 0.12 260)",
+          "oklch(38% 0.12 260)",
+          "oklch(49% 0.12 260)",
+          "oklch(61% 0.12 260)",
+          "oklch(72% 0.12 260)",
+          "oklch(84% 0.12 260)",
+          "oklch(95% 0.12 260)"
+        ]
+      },
+      "evidence-soft": {
+        "role": "neutral",
+        "displayName": "Evidence Soft",
+        "canonical": "#42424a",
+        "tonalRamp": [
+          "oklch(15% 0.005 280)",
+          "oklch(26% 0.005 280)",
+          "oklch(38% 0.005 280)",
+          "oklch(49% 0.005 280)",
+          "oklch(61% 0.005 280)",
+          "oklch(72% 0.005 280)",
+          "oklch(84% 0.005 280)",
+          "oklch(95% 0.005 280)"
+        ]
+      }
+    },
+    "shadows": [
+      {
+        "name": "panel",
+        "value": "0 8px 24px #00000006",
+        "purpose": "Project and SQL panel separation."
+      },
+      {
+        "name": "portrait",
+        "value": "0 12px 28px #00000016",
+        "purpose": "Lift the circular portrait."
+      }
+    ],
+    "motion": [
+      {
+        "name": "link-state",
+        "value": "160ms ease-out",
+        "purpose": "Color, border and background transitions."
+      },
+      {
+        "name": "sphere-drift",
+        "value": "3\u20134.2s sine.inOut, yoyo, repeat",
+        "purpose": "Decorative spheres; static for reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "420",
+        "value": "420px"
+      },
+      {
+        "name": "760",
+        "value": "760px"
+      },
+      {
+        "name": "900",
+        "value": "900px"
+      },
+      {
+        "name": "980",
+        "value": "980px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Primary Button from the homepage implementation.",
+      "html": "<a href=\"#\" class=\"ds-primary\">Get in touch</a>",
+      "css": ".ds-primary{font-family:Inter Variable,system-ui,sans-serif;display:inline-flex;align-items:center;min-height:46px;box-sizing:border-box;padding:13px 25px;border:1px solid #1d1d1f;border-radius:999px;background:var(--ink,#1d1d1f);color:#fff;font-weight:500;text-decoration:none;transition:background-color 160ms ease-out;}.ds-primary:hover{background:#363639;}.ds-primary:focus-visible{outline:3px solid var(--evidence-soft,#42424a);outline-offset:4px;}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Secondary Button from the homepage implementation.",
+      "html": "<a href=\"#\" class=\"ds-secondary\">Get in touch</a>",
+      "css": ".ds-secondary{font-family:Inter Variable,system-ui,sans-serif;display:inline-flex;align-items:center;min-height:46px;box-sizing:border-box;padding:13px 25px;border:1px solid #1d1d1f;border-radius:999px;background:transparent;color:var(--ink,#1d1d1f);font-weight:500;text-decoration:none;transition:background-color 160ms ease-out;}.ds-secondary:hover{background:#e8e8ed;}.ds-secondary:focus-visible{outline:3px solid var(--evidence-soft,#42424a);outline-offset:4px;}"
+    },
+    {
+      "name": "Project Card",
+      "kind": "card",
+      "refersTo": "project-card",
+      "description": "Project Card from the homepage implementation.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-shot\">Project screenshot</div><div class=\"ds-body\"><h3>Selected work</h3><p>Evidence-led investigations and controls.</p><a href=\"#\">View project</a></div></article>",
+      "css": ".ds-card{font-family:Inter Variable,system-ui,sans-serif;background:var(--surface,#fff);color:var(--ink,#1d1d1f);border-radius:16px;overflow:hidden;box-shadow:0 8px 24px #00000006;max-width:450px;}.ds-shot{aspect-ratio:16/10;background:var(--canvas-deep,#edf2fa);display:grid;place-items:center;color:var(--muted,#55555d);}.ds-body{padding:26px;}.ds-body h3{font-size:1.45rem;margin:0 0 8px;}.ds-body p{color:var(--muted,#55555d);line-height:1.7;}.ds-body a{color:var(--signal-strong,#005bb8);}.ds-body a:hover{color:var(--ink,#1d1d1f);}.ds-body a:focus-visible{outline:3px solid var(--evidence-soft,#42424a);outline-offset:4px;}"
+    },
+    {
+      "name": "Tool Pill",
+      "kind": "chip",
+      "refersTo": "tool-pill",
+      "description": "Tool Pill from the homepage implementation.",
+      "html": "<span class=\"ds-pill\">SQL</span>",
+      "css": ".ds-pill{font-family:Inter Variable,system-ui,sans-serif;display:inline-block;background:var(--canvas-deep,#edf2fa);color:var(--muted,#55555d);border-radius:999px;padding:8px 12px;font-size:.82rem;}"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Navigation from the homepage implementation.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-brand\" href=\"#\">Brandon Candela</a><a href=\"#\">Projects</a><a href=\"#\">Contact</a></nav>",
+      "css": ".ds-nav{font-family:Inter Variable,system-ui,sans-serif;display:flex;align-items:center;gap:26px;min-height:60px;background:rgba(245,245,247,.94);backdrop-filter:blur(18px);border-bottom:1px solid rgba(0,0,0,.07);}.ds-nav a{font-size:13px;color:var(--muted,#55555d);text-decoration:none;}.ds-nav .ds-brand{font-size:15px;font-weight:650;color:var(--ink,#1d1d1f);}.ds-nav a:hover{color:var(--ink,#1d1d1f);}.ds-nav a:focus-visible{outline:3px solid var(--evidence-soft,#42424a);outline-offset:4px;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Personal Product Showcase",
+    "overview": "The homepage adapts the user-selected itsyujay/apple-style-portfolio template: quiet light gray canvas, white rounded panels, Inter typography and a centered personal introduction. A circular portrait and large name anchor the hero while translucent blue spheres add restrained depth around it. Real project screenshots and existing portfolio content carry the evidence.",
+    "keyCharacteristics": [
+      "Light surfaces and spacious composition.",
+      "Centered portrait and name with floating blue spheres.",
+      "Rounded white project and content panels.",
+      "Inter typography with dark pill actions and blue text links."
+    ],
+    "rules": [
+      {
+        "name": "The Scope Rule",
+        "body": "This system governs the Astro homepage. Existing note detail pages retain their dark casebook appearance through `assets/site.css` and `assets/notes.css`; do not describe or migrate those pages as light without an explicit scope change. The effective homepage source is `theme/src/styles/portfolio.css`, including its final Apple-style overrides, plus `Hero.astro` and `Scene3D.tsx`.",
+        "section": "overview"
+      },
+      {
+        "name": "The Light Surface Rule",
+        "body": "New homepage sections use the light canvas and white surfaces defined above; do not infer the effective palette from the earlier dark declarations in the stylesheet.",
+        "section": "colors"
+      }
+    ],
+    "dos": [
+      "Do keep Brandon's portrait, factual claims, working project links and original photographs.",
+      "Do use the centered portrait/name hero and blue sphere treatment from the selected template.",
+      "Do preserve visible keyboard focus and the static reduced-motion experience."
+    ],
+    "donts": [
+      "Don't introduce template placeholder claims or testimonials.",
+      "Don't apply this light homepage palette to the dark note detail pages implicitly.",
+      "Don't restore the former navy, gold and serif homepage design from stale declarations or documentation."
+    ]
+  }
+}

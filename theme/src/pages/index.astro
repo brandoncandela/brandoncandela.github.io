@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import navigation from '../content/navigation.html?raw';
+import portfolio from '../content/portfolio.html?raw';
+import footer from '../content/footer.html?raw';
+---
+<Layout><Fragment set:html={navigation}/><main id="main" class="wrap"><Hero/><Fragment set:html={portfolio}/></main><Fragment set:html={footer}/>
+<script is:inline>
+const filters = document.querySelectorAll('[data-filter]');
+filters.forEach(button => button.addEventListener('click', () => {
+  filters.forEach(b => b.setAttribute('aria-pressed', String(b === button)));
+  let count = 0;
+  document.querySelectorAll('[data-category]').forEach(card => {
+    card.hidden = button.dataset.filter !== 'all' && card.dataset.category !== button.dataset.filter;
+    if (!card.hidden) count++;
+  });
+  document.getElementById('project-count').textContent = 'Showing ' + count + ' project' + (count === 1 ? '' : 's');
+}));
+
+const queries = {
+  workload: ['Group the training cases by their SQL-derived disposition.', 'SELECT disposition, COUNT(*) AS case_count\nFROM training_triage\nGROUP BY disposition;'],
+  gaps: ['Find missing identifiers without labeling them as mismatches.', "SELECT field, COUNT(*) AS unknown_count\nFROM comparison_examples\nWHERE state = 'unknown'\nGROUP BY field;"],
+  join: ['Connect each training case with its rule-based SQL result.', 'SELECT t.id, t.label, v.disposition\nFROM training_cases AS t\nJOIN training_triage AS v ON v.id = t.id\nORDER BY t.id;']
+};
+document.querySelectorAll('[data-query]').forEach(button => button.addEventListener('click', () => {
+  document.querySelectorAll('[data-query]').forEach(b => b.setAttribute('aria-pressed', String(b === button)));
+  const [description, sql] = queries[button.dataset.query];
+  document.getElementById('query-description').textContent = description;
+  document.getElementById('query-code').textContent = sql;
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.getElementById('query-code').animate(
+      [{ clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0)' }],
+      { duration: 260, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' }
+    );
+  }
+}));
+
+document.querySelectorAll('.timeline details').forEach(detail => {
+  detail.addEventListener('toggle', () => {
+    const story = detail.querySelector('.experience-story');
+    if (!detail.open || !story || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    story.getAnimations().forEach(animation => animation.cancel());
+    story.animate(
+      [{ clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0)' }],
+      { duration: 320, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' }
+    );
+  });
+});
+</script>
+</Layout>
