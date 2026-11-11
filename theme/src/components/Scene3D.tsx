@@ -15,11 +15,12 @@ export default function Scene3D() {
   const camera = new THREE.PerspectiveCamera(75, 1, .1, 100);
   camera.position.z = 5;
   const geometry = new THREE.SphereGeometry(1, 24, 24);
-  const material = new THREE.MeshPhongMaterial({ color: 0x5aa9ff, transparent: true, opacity: .32 });
+  // A different blue per sphere: sky, periwinkle, cyan, indigo, pale blue.
+  const materials = [0x5aa9ff, 0x8b93ff, 0x38c6f4, 0x4f63e6, 0xa5c8ff].map(color => new THREE.MeshPhongMaterial({ color, transparent: true, opacity: .38, shininess: 60 }));
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const positions = [[-6,2,-8,.7],[6,1,-8,.9],[-5,-3,-7,.5],[5,-3,-9,.7],[-2,4,-12,.4]];
-  const spheres = positions.map(([x,y,z,scale]) => {
-   const mesh = new THREE.Mesh(geometry, material); mesh.position.set(x,y,z); mesh.scale.setScalar(scale); scene.add(mesh); return mesh;
+  const spheres = positions.map(([x,y,z,scale], i) => {
+   const mesh = new THREE.Mesh(geometry, materials[i]); mesh.position.set(x,y,z); mesh.scale.setScalar(scale); scene.add(mesh); return mesh;
   });
   scene.add(new THREE.AmbientLight(0xffffff, .7));
   const light = new THREE.DirectionalLight(0xffffff, 1); light.position.set(5,5,5); scene.add(light);
@@ -39,7 +40,7 @@ export default function Scene3D() {
   const ro = new ResizeObserver(resize); ro.observe(host);
   const io = new IntersectionObserver(([entry]) => {active=entry.isIntersecting;update();}); io.observe(host);
   motion.addEventListener('change',update); document.addEventListener('visibilitychange',update); resize(); update();
-  return () => {cancelAnimationFrame(frame);tweens.forEach(t=>t.kill());ro.disconnect();io.disconnect();motion.removeEventListener('change',update);document.removeEventListener('visibilitychange',update);geometry.dispose();material.dispose();renderer.dispose();renderer.domElement.remove();};
+  return () => {cancelAnimationFrame(frame);tweens.forEach(t=>t.kill());ro.disconnect();io.disconnect();motion.removeEventListener('change',update);document.removeEventListener('visibilitychange',update);geometry.dispose();materials.forEach(m=>m.dispose());renderer.dispose();renderer.domElement.remove();};
  }, []);
  return <div ref={ref} style={{position:'absolute',inset:0}} />;
 }
