@@ -15,7 +15,7 @@ export default function Scene3D() {
   const camera = new THREE.PerspectiveCamera(75, 1, .1, 100);
   camera.position.z = 5;
   const geometry = new THREE.SphereGeometry(1, 24, 24);
-  const material = new THREE.MeshPhongMaterial({ color: 0x0066ff, transparent: true, opacity: .3 });
+  const material = new THREE.MeshPhongMaterial({ color: 0x5aa9ff, transparent: true, opacity: .32 });
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const positions = [[-6,2,-8,.7],[6,1,-8,.9],[-5,-3,-7,.5],[5,-3,-9,.7],[-2,4,-12,.4]];
   const spheres = positions.map(([x,y,z,scale]) => {
