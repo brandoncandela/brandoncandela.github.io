@@ -423,15 +423,18 @@ pre {
 /* Community */
 .community {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(210px, 0.65fr);
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
   gap: 46px;
   padding: 42px 0;
   border-block: 1px solid var(--line);
 }
 .community > div:first-child p { max-width: 58ch; }
-.stats { display: grid; align-content: center; grid-template-columns: auto 1fr; gap: 2px 16px; }
-.stats strong { color: var(--evidence-soft); font-family: "Inter Variable", system-ui, sans-serif; font-size: clamp(2.25rem, 5vw, 3.5rem); line-height: 1; }
-.stats span { align-self: end; margin-bottom: 5px; color: var(--muted); }
+.community > div:first-child p + p { margin-top: 14px; }
+.stats { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 6px; }
+.stats strong { display: block; font-family: "Inter Variable", system-ui, sans-serif; font-size: clamp(2.75rem, 5vw, 4rem); font-weight: 800; letter-spacing: -.04em; line-height: 1; white-space: nowrap; background: linear-gradient(100deg, #1d1d1f 0%, #1e3a8a 45%, #2563eb 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.stats > span { color: var(--muted); font-size: 1.05rem; }
+.stat-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; padding: 0; list-style: none; }
+.stat-tags li { padding: 6px 12px; border-radius: 999px; background: rgb(0 102 204 / .08); color: #0058b0; font-size: .82rem; font-weight: 600; white-space: nowrap; }
 .gallery { grid-column: 1 / -1; display: grid; grid-template-columns: 1.7fr 1fr; gap: 18px; }
 .gallery figure { margin: 0; min-width: 0; }
 .gallery img { width: 100%; height: 290px; object-fit: cover; border-radius: var(--radius-sm); }
@@ -517,7 +520,6 @@ footer p { max-width: 62ch; margin: 0; color: inherit; }
   .note .read { grid-column: 1; margin-top: 6px; }
   .two-col { grid-template-columns: 1fr; }
   .community { grid-template-columns: 1fr; gap: 30px; padding: 34px 0; }
-  .stats { grid-template-columns: auto 1fr; }
   .gallery { grid-template-columns: 1fr; }
   .gallery img { height: auto; aspect-ratio: 4 / 3; }
   .contact { grid-template-columns: 1fr; gap: 26px; padding: 30px 24px; }
@@ -535,8 +537,6 @@ footer p { max-width: 62ch; margin: 0; color: inherit; }
   .compact .project-body p { grid-column: 1 / -1; }
   pre { padding: 16px; font-size: 0.75rem; }
   .creds article { grid-template-columns: 72px 1fr; }
-  .stats { grid-template-columns: 1fr; }
-  .stats span { margin: 0 0 18px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
