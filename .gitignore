@@ -3,3 +3,10 @@ theme/dist/
 theme/.astro/
 .codex/
 .impeccable/review/
+
+# Keep secrets and local environment files out of git
+.env
+.env.*
+!.env.example
+.dev.vars
+*.pem
