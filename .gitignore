@@ -10,3 +10,6 @@ theme/.astro/
 !.env.example
 .dev.vars
 *.pem
+DESIGN.md
+PRODUCT.md
+.impeccable/

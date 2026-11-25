@@ -13,5 +13,6 @@ Requires Node 20 or newer.
 3. `node scripts/build-site.mjs`
 4. Preview the repository root with `python3 -m http.server 4321`.
 5. Commit the source plus generated `index.html` and `_astro/` assets. GitHub Pages serves the root of `main`.
+6. Technical case studies live in `scripts/build_case_studies.py`. Edit the data there, then run `python3 scripts/build_case_studies.py` to regenerate `case-studies/`.
 
 The original `assets/site.css` remains available for the existing articles. Static output includes `.nojekyll` so GitHub Pages serves Astro's underscore-prefixed assets. Project demos remain separate repositories with their existing URLs.

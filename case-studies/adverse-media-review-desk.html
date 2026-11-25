@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Adverse Media Review Desk: technical case study | Brandon Candela</title>
+<meta name="description" content="Decides whether a news story is really about your customer, with the same triage rules written in TypeScript for analysts and SQL for auditors.">
+<link rel="canonical" href="https://brandoncandela.github.io/case-studies/adverse-media-review-desk.html">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Adverse Media Review Desk: technical case study">
+<meta property="og:description" content="Decides whether a news story is really about your customer, with the same triage rules written in TypeScript for analysts and SQL for auditors.">
+<meta property="og:url" content="https://brandoncandela.github.io/case-studies/adverse-media-review-desk.html">
+<meta property="og:image" content="https://brandoncandela.github.io/assets/projects/adverse-media-review-desk.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Adverse Media Review Desk: technical case study", "description": "Decides whether a news story is really about your customer, with the same triage rules written in TypeScript for analysts and SQL for auditors.", "author": {"@type": "Person", "name": "Brandon Candela", "url": "https://brandoncandela.github.io/"}, "url": "https://brandoncandela.github.io/case-studies/adverse-media-review-desk.html", "image": "https://brandoncandela.github.io/assets/projects/adverse-media-review-desk.jpg"}</script>
+<link rel="stylesheet" href="/assets/page.css">
+</head>
+<body>
+<nav><div><a href="/">Brandon Candela</a><span class="navlinks"><a href="/case-studies/">Case studies</a><a href="/#writing">Writing</a><a href="/#contact">Contact</a></span></div></nav>
+
+<main>
+<p class="eyebrow">Technical case study · Investigation tooling</p>
+<h1>Adverse Media Review Desk</h1>
+<p class="lede">Decides whether a news story is really about your customer, with the same triage rules written in TypeScript for analysts and SQL for auditors.</p>
+<div class="actions"><a class="btn primary" href="/adverse-media-review-desk/">Live demo</a><a class="btn ghost" href="https://github.com/brandoncandela/adverse-media-review-desk">Source code</a><a class="btn ghost" href="mailto:Brandon.d.candela@gmail.com">Contact</a></div>
+<div class="glance"><div class="card"><b>9</b><span>SQL training cases</span></div><div class="card"><b>27</b><span>identifier comparisons</span></div><div class="card"><b>4</b><span>comparison states, not two</span></div><div class="card"><b>20</b><span>automated tests</span></div></div>
+<section class="cs card"><div class="summary-grid"><div><h3>Who it is for</h3><p>KYC and screening analysts reviewing negative news hits, and the QC teams who check them.</p></div><div><h3>What I built</h3><p>A side-by-side identifier comparison, news search, triage rules in TypeScript and a SQL view, and an export pipeline that runs the SQL migrations.</p></div><div><h3>Result</h3><p>The interface and the SQL view reach the same outcome, and a query proves it by returning nothing when they agree.</p></div></div></section>
+<section class="cs card"><h2>The problem</h2><p>Name screening finds articles that mention someone with your customer&#x27;s name. Most are about someone else. The common mistake is treating missing information as a mismatch, which closes alerts that were never actually cleared.</p></section>
+<section class="cs card"><h2>Architecture</h2><p>How data moves from source to decision.</p><ol class="flow"><li><b>Compare</b><span>Bank record and article subject side by side: match, variant, conflict or unknown.</span></li><li><b>Search news</b><span>GDELT news search, a Google search link, or a manual article.</span></li><li><b>Triage in code</b><span>Rules in lib/matching.ts drive the interface.</span></li><li><b>Triage in SQL</b><span>Migrations build 9 cases and a view using a CTE, CASE, conditional aggregation and JSON extraction.</span></li><li><b>Export</b><span>A script runs the migrations in SQLite and exports the SQL-derived outcomes.</span></li><li><b>Decide</b><span>Escalate, rule out or request information, with the reasoning saved.</span></li></ol><h3 style="margin-top:18px">Technologies</h3><ul class="chips"><li>TypeScript</li><li>React</li><li>Vite</li><li>SQLite migrations</li><li>GDELT API</li><li>node:test</li></ul></section>
+<section class="cs card"><h2>Engineering decisions</h2><div class="decisions"><div><b>Four states instead of match or no match</b><p>Only a verified conflict counts against a hit; unknown stays an evidence gap.</p></div><div><b>Two implementations, one answer</b><p>The SQL view and the TypeScript rules are checked against the expected outcome so they cannot drift apart unnoticed.</p></div><div><b>Location alone never rules a hit out</b><p>People move. A name and full date of birth match escalates even if the city differs.</p></div></div></section>
+<section class="cs two"><div class="card"><h2>Tests</h2><p><b style="color:var(--ink)">20 node:test cases</b>, run with one command and no network.</p><ul class="tight"><li>A missing middle name or unknown identifier is never a mismatch</li><li>An unverified DOB conflict is not a false positive; a verified one needs evidence and a source</li><li>Name and full DOB escalate despite a country conflict</li><li>Day-month reversals are ambiguous, and age is judged on the article date</li><li>Unsafe links are rejected and stale QC is flagged after a customer change</li></ul></div><div class="card"><h2>Results</h2><ul class="tight"><li>Nine training cases that each test a tricky situation</li><li>A disagreement query between SQL and expected outcomes that returns zero rows</li></ul></div></section>
+<section class="cs two"><div class="card"><h2>Limitations</h2><ul class="tight"><li>Training cases are fictional</li><li>News search depends on GDELT coverage</li><li>The full case store in data-model.sql is a design proposal, not used by the demo</li></ul></div><div class="card"><h2>What I would build next</h2><ul class="tight"><li>Storing reviews in the proposed case store</li><li>Source reliability scoring per outlet</li><li>Batch review of many hits for one customer</li></ul></div></section>
+<div class="card contact-band"><p>Building financial crime tooling and want to talk about this project?</p>
+<div class="actions"><a class="btn primary" href="mailto:Brandon.d.candela@gmail.com">Email Brandon</a><a class="btn ghost" href="https://www.linkedin.com/in/brandon-candela/">LinkedIn</a></div></div>
+</main>
+<footer>All data in this project is synthetic or public. Built and tested by Brandon Candela. <a href="/case-studies/">All case studies</a> · <a href="/">Portfolio</a></footer>
+</body>
+</html>

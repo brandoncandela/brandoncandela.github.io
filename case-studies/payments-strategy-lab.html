@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Payments Strategy Lab: technical case study | Brandon Candela</title>
+<meta name="description" content="A tested unit-economics model that compares three approval strategies on revenue, fraud loss and review capacity, ending in a 90-day pilot memo.">
+<link rel="canonical" href="https://brandoncandela.github.io/case-studies/payments-strategy-lab.html">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Payments Strategy Lab: technical case study">
+<meta property="og:description" content="A tested unit-economics model that compares three approval strategies on revenue, fraud loss and review capacity, ending in a 90-day pilot memo.">
+<meta property="og:url" content="https://brandoncandela.github.io/case-studies/payments-strategy-lab.html">
+<meta property="og:image" content="https://brandoncandela.github.io/assets/projects/payments-strategy-lab.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Payments Strategy Lab: technical case study", "description": "A tested unit-economics model that compares three approval strategies on revenue, fraud loss and review capacity, ending in a 90-day pilot memo.", "author": {"@type": "Person", "name": "Brandon Candela", "url": "https://brandoncandela.github.io/"}, "url": "https://brandoncandela.github.io/case-studies/payments-strategy-lab.html", "image": "https://brandoncandela.github.io/assets/projects/payments-strategy-lab.jpg"}</script>
+<link rel="stylesheet" href="/assets/page.css">
+</head>
+<body>
+<nav><div><a href="/">Brandon Candela</a><span class="navlinks"><a href="/case-studies/">Case studies</a><a href="/#writing">Writing</a><a href="/#contact">Contact</a></span></div></nav>
+
+<main>
+<p class="eyebrow">Technical case study · Fintech risk infrastructure</p>
+<h1>Payments Strategy Lab</h1>
+<p class="lede">A tested unit-economics model that compares three approval strategies on revenue, fraud loss and review capacity, ending in a 90-day pilot memo.</p>
+<div class="actions"><a class="btn primary" href="/payments-strategy-lab/">Live demo</a><a class="btn ghost" href="https://github.com/brandoncandela/payments-strategy-lab">Source code</a><a class="btn ghost" href="mailto:Brandon.d.candela@gmail.com">Contact</a></div>
+<div class="glance"><div class="card"><b>3</b><span>strategies compared</span></div><div class="card"><b>5</b><span>adjustable assumptions</span></div><div class="card"><b>$479K</b><span>best monthly contribution in the base case</span></div><div class="card"><b>7</b><span>model tests</span></div></div>
+<section class="cs card"><div class="summary-grid"><div><h3>Who it is for</h3><p>Payments, risk and finance leaders deciding whether more approvals are worth the fraud and staffing cost.</p></div><div><h3>What I built</h3><p>A pure JavaScript financial model, sensitivity tables, a staffing payback analysis and a downloadable decision memo.</p></div><div><h3>Result</h3><p>Targeted review wins the base case, and the model shows that hiring to cover every review would cost $67K a month more than it saves.</p></div></div></section>
+<section class="cs card"><h2>The problem</h2><p>A payments business wants to approve more legitimate purchases. Approving more also lets more fraud through and sends more payments to a review team with fixed capacity. The decision needs numbers a CFO and a risk lead both accept.</p></section>
+<section class="cs card"><h2>Architecture</h2><p>How data moves from source to decision.</p><ol class="flow"><li><b>Assumptions</b><span>Volume, ticket size, fraud rate, margin and review headcount.</span></li><li><b>Model</b><span>Pure functions compute approvals, fraud loss, review cost and contribution per strategy.</span></li><li><b>Stress</b><span>Sensitivity across fraud rates and a staffing payback scenario.</span></li><li><b>Decide</b><span>Pick a strategy, write the reasoning, export the memo.</span></li></ol><h3 style="margin-top:18px">Technologies</h3><ul class="chips"><li>JavaScript (pure model module)</li><li>node:test</li><li>HTML and CSS</li></ul></section>
+<section class="cs card"><h2>Engineering decisions</h2><div class="decisions"><div><b>Keep the model pure</b><p>No DOM in the model, so it can be tested on its own and reused.</p></div><div><b>Check against an independent calculation</b><p>A reference case computed separately guards the formulas.</p></div><div><b>Capacity overflow is declined</b><p>Payments the team has no time to review are declined, which makes the staffing tradeoff explicit.</p></div></div></section>
+<section class="cs two"><div class="card"><h2>Tests</h2><p><b style="color:var(--ink)">7 node:test cases</b>, run with one command and no network.</p><ul class="tight"><li>An independently calculated reference case</li><li>The cash bridge reconciles</li><li>Capacity limits reviews, and spare staff cost money without adding approvals</li><li>Zero fraud gives zero fraud loss; invalid inputs are rejected</li></ul></div><div class="card"><h2>Results</h2><ul class="tight"><li>Base case: targeted review $479,342, conservative $464,660, growth first $388,364 monthly contribution</li><li>Full review coverage needs 25 FTE; adding 13 costs $67,073 a month net</li></ul></div></section>
+<section class="cs two"><div class="card"><h2>Limitations</h2><ul class="tight"><li>All inputs are fictional, not benchmarks</li><li>Contribution excludes overhead, tax, capital and lifetime value</li><li>A scenario model, not a forecast</li></ul></div><div class="card"><h2>What I would build next</h2><ul class="tight"><li>Chargeback timing and dispute costs</li><li>Segment-level strategies instead of one policy</li><li>Confidence ranges on fraud rate</li></ul></div></section>
+<section class="cs card"><h2>Product and delivery documents</h2><ul class="tight"><li><a href="https://github.com/brandoncandela/payments-strategy-lab/blob/main/dist/methodology.md">Methodology and formulas</a></li></ul></section>
+<div class="card contact-band"><p>Building financial crime tooling and want to talk about this project?</p>
+<div class="actions"><a class="btn primary" href="mailto:Brandon.d.candela@gmail.com">Email Brandon</a><a class="btn ghost" href="https://www.linkedin.com/in/brandon-candela/">LinkedIn</a></div></div>
+</main>
+<footer>All data in this project is synthetic or public. Built and tested by Brandon Candela. <a href="/case-studies/">All case studies</a> · <a href="/">Portfolio</a></footer>
+</body>
+</html>

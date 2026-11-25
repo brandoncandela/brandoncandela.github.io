@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sanctions Review Desk: technical case study | Brandon Candela</title>
+<meta name="description" content="Takes a possible OFAC name match to a documented decision a QC reviewer can check, with live search over the official list refreshed every hour.">
+<link rel="canonical" href="https://brandoncandela.github.io/case-studies/sanctions-review-desk.html">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sanctions Review Desk: technical case study">
+<meta property="og:description" content="Takes a possible OFAC name match to a documented decision a QC reviewer can check, with live search over the official list refreshed every hour.">
+<meta property="og:url" content="https://brandoncandela.github.io/case-studies/sanctions-review-desk.html">
+<meta property="og:image" content="https://brandoncandela.github.io/assets/projects/sanctions-review-desk.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Sanctions Review Desk: technical case study", "description": "Takes a possible OFAC name match to a documented decision a QC reviewer can check, with live search over the official list refreshed every hour.", "author": {"@type": "Person", "name": "Brandon Candela", "url": "https://brandoncandela.github.io/"}, "url": "https://brandoncandela.github.io/case-studies/sanctions-review-desk.html", "image": "https://brandoncandela.github.io/assets/projects/sanctions-review-desk.jpg"}</script>
+<link rel="stylesheet" href="/assets/page.css">
+</head>
+<body>
+<nav><div><a href="/">Brandon Candela</a><span class="navlinks"><a href="/case-studies/">Case studies</a><a href="/#writing">Writing</a><a href="/#contact">Contact</a></span></div></nav>
+
+<main>
+<p class="eyebrow">Technical case study · Investigation tooling</p>
+<h1>Sanctions Review Desk</h1>
+<p class="lede">Takes a possible OFAC name match to a documented decision a QC reviewer can check, with live search over the official list refreshed every hour.</p>
+<div class="actions"><a class="btn primary" href="/sanctions-review-desk/">Live demo</a><a class="btn ghost" href="https://github.com/brandoncandela/sanctions-review-desk">Source code</a><a class="btn ghost" href="mailto:Brandon.d.candela@gmail.com">Contact</a></div>
+<div class="glance"><div class="card"><b>~19,500</b><span>OFAC SDN entries searchable</span></div><div class="card"><b>Hourly</b><span>automated list refresh</span></div><div class="card"><b>24 h</b><span>staleness limit before search refuses</span></div><div class="card"><b>21</b><span>automated tests</span></div></div>
+<section class="cs card"><div class="summary-grid"><div><h3>Who it is for</h3><p>Sanctions screening analysts, trade compliance teams and QC reviewers.</p></div><div><h3>What I built</h3><p>A scheduled OFAC data pipeline, in-browser name search, identifier comparison, evidence pinning, information requests and multi-round QC.</p></div><div><h3>Result</h3><p>A screening hit becomes a reviewable case file, and the search never answers from data older than a day.</p></div></div></section>
+<section class="cs card"><h2>The problem</h2><p>A screening tool says a customer or shipment party might match the sanctions list. The analyst still has to compare identifiers, request what is missing, decide and explain it well enough that QC can challenge it.</p></section>
+<section class="cs card"><h2>Architecture</h2><p>How data moves from source to decision.</p><ol class="flow"><li><b>Refresh</b><span>A GitHub Action downloads the official SDN and alias files every hour.</span></li><li><b>Publish</b><span>The normalized list is committed as JSON with a retrieval timestamp.</span></li><li><b>Search</b><span>The browser loads it and matches every query word against names and aliases, ignoring accents and punctuation.</span></li><li><b>Compare</b><span>Each identifier marked as supporting, against or unknown.</span></li><li><b>Document</b><span>Pinned sources, information requests and a written assessment.</span></li><li><b>QC</b><span>Frozen submissions, findings, returns and resubmissions in one case file.</span></li></ol><h3 style="margin-top:18px">Technologies</h3><ul class="chips"><li>TypeScript</li><li>React</li><li>Vite</li><li>Tailwind CSS</li><li>GitHub Actions</li><li>node:test</li></ul></section>
+<section class="cs card"><h2>Engineering decisions</h2><div class="decisions"><div><b>Refuse stale data</b><p>If the list copy is more than 24 hours old the search will not run, because a confident answer on old data is worse than no answer.</p></div><div><b>Unknown is its own state</b><p>Missing information is never counted as a mismatch.</p></div><div><b>Keep sanctions and export controls apart</b><p>A shipment can raise both, and the case records them separately.</p></div><div><b>Validate case files on import</b><p>Broken references are rejected so a reopened case is the case that was saved.</p></div></div></section>
+<section class="cs two"><div class="card"><h2>Tests</h2><p><b style="color:var(--ink)">21 node:test cases</b>, run with one command and no network.</p><ul class="tight"><li>Official OFAC CSV parsing keeps quoted commas and the end-of-file marker</li><li>A fresh feed is accepted; a stale or failed feed is rejected</li><li>Editing a draft cannot change a submitted case</li><li>A QC return needs an analyst response before resubmission</li><li>Malformed, dangling or colliding case files are rejected on import</li></ul></div><div class="card"><h2>Results</h2><ul class="tight"><li>Three training cases covering rerouted shipments, a similar name and a third-party payer</li><li>Live search over the current SDN list with the retrieval time on every result</li></ul></div></section>
+<section class="cs two"><div class="card"><h2>Limitations</h2><ul class="tight"><li>Searches SDN names and aliases only; no 50 Percent Rule ownership, other lists or export classifications</li><li>Reviewer names are typed in, not authenticated</li><li>Case files can be edited by anyone who holds them</li></ul></div><div class="card"><h2>What I would build next</h2><ul class="tight"><li>Ownership checks for entities owned 50% or more by listed persons</li><li>Consolidated Screening List coverage</li><li>Authenticated reviewers and a locked audit trail</li></ul></div></section>
+<div class="card contact-band"><p>Building financial crime tooling and want to talk about this project?</p>
+<div class="actions"><a class="btn primary" href="mailto:Brandon.d.candela@gmail.com">Email Brandon</a><a class="btn ghost" href="https://www.linkedin.com/in/brandon-candela/">LinkedIn</a></div></div>
+</main>
+<footer>All data in this project is synthetic or public. Built and tested by Brandon Candela. <a href="/case-studies/">All case studies</a> · <a href="/">Portfolio</a></footer>
+</body>
+</html>

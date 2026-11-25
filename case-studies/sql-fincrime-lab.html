@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SQL Financial Crime Lab: technical case study | Brandon Candela</title>
+<meta name="description" content="Real SQLite queries running in the browser to show which monitoring threshold changes cut review work and which ones miss cases that matter.">
+<link rel="canonical" href="https://brandoncandela.github.io/case-studies/sql-fincrime-lab.html">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL Financial Crime Lab: technical case study">
+<meta property="og:description" content="Real SQLite queries running in the browser to show which monitoring threshold changes cut review work and which ones miss cases that matter.">
+<meta property="og:url" content="https://brandoncandela.github.io/case-studies/sql-fincrime-lab.html">
+<meta property="og:image" content="https://brandoncandela.github.io/assets/projects/sql-fincrime-lab.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "SQL Financial Crime Lab: technical case study", "description": "Real SQLite queries running in the browser to show which monitoring threshold changes cut review work and which ones miss cases that matter.", "author": {"@type": "Person", "name": "Brandon Candela", "url": "https://brandoncandela.github.io/"}, "url": "https://brandoncandela.github.io/case-studies/sql-fincrime-lab.html", "image": "https://brandoncandela.github.io/assets/projects/sql-fincrime-lab.jpg"}</script>
+<link rel="stylesheet" href="/assets/page.css">
+</head>
+<body>
+<nav><div><a href="/">Brandon Candela</a><span class="navlinks"><a href="/case-studies/">Case studies</a><a href="/#writing">Writing</a><a href="/#contact">Contact</a></span></div></nav>
+
+<main>
+<p class="eyebrow">Technical case study · Fintech risk infrastructure</p>
+<h1>SQL Financial Crime Lab</h1>
+<p class="lede">Real SQLite queries running in the browser to show which monitoring threshold changes cut review work and which ones miss cases that matter.</p>
+<div class="actions"><a class="btn primary" href="/sql-fincrime-lab/">Live demo</a><a class="btn ghost" href="https://github.com/brandoncandela/sql-fincrime-lab">Source code</a><a class="btn ghost" href="mailto:Brandon.d.candela@gmail.com">Contact</a></div>
+<div class="glance"><div class="card"><b>3</b><span>tunable monitoring scenarios</span></div><div class="card"><b>36</b><span>customers, 177 transactions</span></div><div class="card"><b>44% / 67%</b><span>baseline precision and recall</span></div><div class="card"><b>8</b><span>SQL tests</span></div></div>
+<section class="cs card"><div class="summary-grid"><div><h3>Who it is for</h3><p>Transaction monitoring and model risk teams tuning scenarios.</p></div><div><h3>What I built</h3><p>A deterministic fixture generator, an indexed schema, parameterized scenario queries, an in-browser SQL engine, an alert review flow and an implementation and UAT guide.</p></div><div><h3>Result</h3><p>Tightening thresholds visibly trades fewer alerts for missed cases, which is the failure mode tuning has to watch for.</p></div></div></section>
+<section class="cs card"><h2>The problem</h2><p>A fintech has too many alerts. Some threshold changes reduce work; others quietly remove cases that still deserve investigation. Teams need to see both effects before they change a rule.</p></section>
+<section class="cs card"><h2>Architecture</h2><p>How data moves from source to decision.</p><ol class="flow"><li><b>Generate fixtures</b><span>Deterministic customers, accounts and transactions with authored labels.</span></li><li><b>Model</b><span>Schema with constraints and a query-driven index.</span></li><li><b>Query</b><span>Rapid movement, customer profile and many-to-one scenarios as parameterized SQL.</span></li><li><b>Run in browser</b><span>SQL.js executes the same queries as the tests.</span></li><li><b>Review</b><span>Open an alert, see the exact SQL, write an assessment, role-play QC.</span></li><li><b>Export</b><span>Case with evidence, thresholds, SQL and review history.</span></li></ol><h3 style="margin-top:18px">Technologies</h3><ul class="chips"><li>SQLite</li><li>SQL.js (WebAssembly)</li><li>SQL: joins, CTEs, ROW_NUMBER</li><li>Python fixture generator</li><li>unittest</li></ul></section>
+<section class="cs card"><h2>Engineering decisions</h2><div class="decisions"><div><b>The browser runs the real queries</b><p>No precomputed results, so what a reviewer sees is what the SQL returns.</p></div><div><b>Show the misses</b><p>Recall and missed cases sit next to alert volume on every change.</p></div><div><b>Index for the query, then prove it</b><p>A test checks the query plan uses the account, direction and time index.</p></div></div></section>
+<section class="cs two"><div class="card"><h2>Tests</h2><p><b style="color:var(--ink)">8 unittest cases</b>, run with one command and no network.</p><ul class="tight"><li>Known baseline cases and confusion counts</li><li>Threshold boundary inclusion</li><li>A repeated sender is not counted twice</li><li>Transactions on the wrong day are excluded</li><li>Duplicate IDs and orphans are rejected</li><li>A tighter queue can miss more, and the query uses its index</li></ul></div><div class="card"><h2>Results</h2><ul class="tight"><li>Baseline: 18 alerts, 8 true positives, 4 review-worthy cases missed</li><li>Each scenario tunable live with the effect on precision and recall</li></ul></div></section>
+<section class="cs two"><div class="card"><h2>Limitations</h2><ul class="tight"><li>Small fictional test set</li><li>Rapid movement uses timing and similar amounts; it does not prove the same funds</li><li>QC is a browser role-play without real accounts or a locked audit trail</li></ul></div><div class="card"><h2>What I would build next</h2><ul class="tight"><li>Rolling windows instead of a fixed calendar day</li><li>Above- and below-the-line testing samples</li><li>Scenario documentation in a model risk template</li></ul></div></section>
+<section class="cs card"><h2>Product and delivery documents</h2><ul class="tight"><li><a href="https://github.com/brandoncandela/sql-fincrime-lab/blob/main/dist/implementation.md">Implementation and UAT guide</a></li></ul></section>
+<div class="card contact-band"><p>Building financial crime tooling and want to talk about this project?</p>
+<div class="actions"><a class="btn primary" href="mailto:Brandon.d.candela@gmail.com">Email Brandon</a><a class="btn ghost" href="https://www.linkedin.com/in/brandon-candela/">LinkedIn</a></div></div>
+</main>
+<footer>All data in this project is synthetic or public. Built and tested by Brandon Candela. <a href="/case-studies/">All case studies</a> · <a href="/">Portfolio</a></footer>
+</body>
+</html>

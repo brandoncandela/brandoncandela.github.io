@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fraud Intelligence &amp; Control Lab: technical case study | Brandon Candela</title>
+<meta name="description" content="A fraud spike on a payments platform, turned into SQL features, a tunable control and a written decision on where to set the threshold.">
+<link rel="canonical" href="https://brandoncandela.github.io/case-studies/fraud-intelligence-control-lab.html">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fraud Intelligence &amp; Control Lab: technical case study">
+<meta property="og:description" content="A fraud spike on a payments platform, turned into SQL features, a tunable control and a written decision on where to set the threshold.">
+<meta property="og:url" content="https://brandoncandela.github.io/case-studies/fraud-intelligence-control-lab.html">
+<meta property="og:image" content="https://brandoncandela.github.io/assets/projects/fraud-intelligence-control-lab.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Fraud Intelligence & Control Lab: technical case study", "description": "A fraud spike on a payments platform, turned into SQL features, a tunable control and a written decision on where to set the threshold.", "author": {"@type": "Person", "name": "Brandon Candela", "url": "https://brandoncandela.github.io/"}, "url": "https://brandoncandela.github.io/case-studies/fraud-intelligence-control-lab.html", "image": "https://brandoncandela.github.io/assets/projects/fraud-intelligence-control-lab.jpg"}</script>
+<link rel="stylesheet" href="/assets/page.css">
+</head>
+<body>
+<nav><div><a href="/">Brandon Candela</a><span class="navlinks"><a href="/case-studies/">Case studies</a><a href="/#writing">Writing</a><a href="/#contact">Contact</a></span></div></nav>
+
+<main>
+<p class="eyebrow">Technical case study · Fintech risk infrastructure</p>
+<h1>Fraud Intelligence &amp; Control Lab</h1>
+<p class="lede">A fraud spike on a payments platform, turned into SQL features, a tunable control and a written decision on where to set the threshold.</p>
+<div class="actions"><a class="btn primary" href="/fraud-intelligence-control-lab/">Live demo</a><a class="btn ghost" href="https://github.com/brandoncandela/fraud-intelligence-control-lab">Source code</a><a class="btn ghost" href="mailto:Brandon.d.candela@gmail.com">Contact</a></div>
+<div class="glance"><div class="card"><b>3,771</b><span>synthetic transactions across 60 accounts</span></div><div class="card"><b>87.5%</b><span>precision at the chosen threshold</span></div><div class="card"><b>100%</b><span>recall of seeded review-worthy accounts</span></div><div class="card"><b>7</b><span>automated tests</span></div></div>
+<section class="cs card"><div class="summary-grid"><div><h3>Who it is for</h3><p>Fraud strategy and risk operations teams deciding how to change a control without flooding the review queue.</p></div><div><h3>What I built</h3><p>A deterministic data generator, SQL feature engineering, an auditable point score, a threshold console tied to analyst capacity, a shared-device graph and a decision brief export.</p></div><div><h3>Result</h3><p>At a score of 40 the control queues 8 accounts, catches all 7 review-worthy ones and stays within 8 daily reviews.</p></div></div></section>
+<section class="cs card"><h2>The problem</h2><p>A payments platform sees a possible fraud spike. The team has to decide which accounts enter the review queue, which signals form one incident, and how to change the control without overwhelming 8 reviews of daily capacity or treating a single shared device as proof.</p></section>
+<section class="cs card"><h2>Architecture</h2><p>How data moves from source to decision.</p><ol class="flow"><li><b>Generate data</b><span>Deterministic accounts, devices and transactions with seeded fraud scenarios and benign lookalikes.</span></li><li><b>Model in SQLite</b><span>Schema with foreign keys and indexes.</span></li><li><b>Engineer features</b><span>SQL CTEs: shared-device peers, distinct inbound senders in 24 hours, rapid outbound amount, new foreign device amount.</span></li><li><b>Score</b><span>Transparent point score per account.</span></li><li><b>Export</b><span>Dashboard JSON with the threshold corridor and monitoring trend.</span></li><li><b>Decide</b><span>Threshold console, link graph, four-week monitoring and a downloadable brief.</span></li></ol><h3 style="margin-top:18px">Technologies</h3><ul class="chips"><li>Python 3</li><li>SQLite</li><li>SQL: CTEs, time windows, aggregation</li><li>unittest</li><li>Vanilla JavaScript</li><li>Graph rendering in SVG</li></ul></section>
+<section class="cs card"><h2>Engineering decisions</h2><div class="decisions"><div><b>Point score over a black box</b><p>Each point maps to a signal an investigator can verify, which is what a control owner needs before a model is justified.</p></div><div><b>Capacity is a hard constraint</b><p>Every threshold shows its alert volume against the 8 daily reviews, so a better recall that the team cannot work is visible as a cost.</p></div><div><b>Labels for evaluation only</b><p>Synthetic ground truth is shown to score the control, and the page says a live team would not have it at decision time.</p></div><div><b>A shared device is a lead</b><p>The graph shows the cluster, and the brief treats it as something to check, not as proof of fraud.</p></div></div></section>
+<section class="cs two"><div class="card"><h2>Tests</h2><p><b style="color:var(--ink)">7 unittest cases</b>, run with one command and no network.</p><ul class="tight"><li>Foreign keys are clean and the population is as expected</li><li>The mule cluster is linked through its shared device</li><li>The account takeover feature fires, and a benign marketplace lookalike is kept</li><li>The threshold tradeoff is present</li><li>The dashboard export is valid JSON</li></ul></div><div class="card"><h2>Results</h2><ul class="tight"><li>Score 40: 8 alerts, 87.5% precision, 100% recall, within capacity</li><li>Score 50: 5 alerts but recall drops to 71.4%</li><li>A 5-account mule cluster linked by one shared device, reconstructed as one incident</li></ul></div></section>
+<section class="cs two"><div class="card"><h2>Limitations</h2><ul class="tight"><li>All people, devices and transactions are synthetic</li><li>Weights are illustrative, not calibrated probabilities</li><li>Production would need real outcomes, ongoing monitoring and model governance</li></ul></div><div class="card"><h2>What I would build next</h2><ul class="tight"><li>Backtesting against labeled historical outcomes</li><li>Champion and challenger comparison with a simple model</li><li>Drift alerts on feature distributions</li></ul></div></section>
+<div class="card contact-band"><p>Building financial crime tooling and want to talk about this project?</p>
+<div class="actions"><a class="btn primary" href="mailto:Brandon.d.candela@gmail.com">Email Brandon</a><a class="btn ghost" href="https://www.linkedin.com/in/brandon-candela/">LinkedIn</a></div></div>
+</main>
+<footer>All data in this project is synthetic or public. Built and tested by Brandon Candela. <a href="/case-studies/">All case studies</a> · <a href="/">Portfolio</a></footer>
+</body>
+</html>
