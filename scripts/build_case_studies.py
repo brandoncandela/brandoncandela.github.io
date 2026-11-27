@@ -131,6 +131,49 @@ STUDIES = [
         "docs": [],
     },
     {
+        "slug": "modelguard",
+        "title": "ModelGuard",
+        "pillar": "Model risk and AI governance",
+        "oneliner": "A working model risk management and AI governance platform for a fictional bank: it inventories ten financial crime models, measures them every month from the records they scored, runs independent validations and writes every change to a tamper-evident audit trail.",
+        "demo": None,
+        "repo": "https://github.com/brandoncandela/modelguard",
+        "image": "modelguard.jpg",
+        "tour": ("modelguard-tour.gif", "modelguard.jpg",
+                 "A tour of ModelGuard: executive overview, model inventory, monitoring, a simulated month of severe drift creating new breaches, validation, EU AI Act readiness, LLM evaluation, committee reporting and the audit trail",
+                 "Recorded from the running app with its seeded data. ModelGuard needs a backend and database, so it runs locally or with Docker Compose rather than as a hosted demo."),
+        "extra_links": [("Sample committee report (PDF)", "https://github.com/brandoncandela/modelguard/blob/main/docs/sample-reports/executive-committee-report.pdf")],
+        "glance": [("10", "financial crime models monitored monthly"), ("180,974", "scored records behind the metrics"), ("15", "automated control tests over live data"), ("75", "automated tests on SQLite and PostgreSQL")],
+        "who": "Heads of model risk management, model validators, financial crime compliance leaders and the technology teams that support them.",
+        "built": "A FastAPI and PostgreSQL backend with role-based access, a synthetic bank scored by ten detection models, monthly monitoring with drift tests, validation and findings workflows, EU AI Act readiness assessments, LLM evaluation, committee PDFs and a hash-chained audit trail, behind a React and TypeScript front end.",
+        "result": "Every figure in a committee pack traces back to records in one database. A simulated month of severe drift shows up as graded breaches within seconds.",
+        "problem": [
+            "A bank running transaction monitoring, sanctions screening, customer risk rating and newer machine learning and LLM tools has to show its supervisors that each model is inventoried, independently validated, monitored against agreed limits and fixed when it fails. In practice that evidence lives in spreadsheets, email and slide decks, and the numbers in committee packs are typed in by hand.",
+            "The questions a Head of Model Risk Management gets asked are simple to state and hard to answer quickly: which models are breaching their limits right now, did recall fall because the model got worse or because the data broke, which findings are past target, and can we prove nobody edited the approval history?",
+        ],
+        "flow": [
+            ("Generate a bank", "A deterministic generator creates 1,200 customers, 64,997 transactions, 8,139 alerts and 6,240 news articles over twelve months, with data quality defects and drift scenarios."),
+            ("Score with ten models", "A weighted rules engine, gradient boosting, logistic regression, TF-IDF classifiers and fuzzy name screening score every record. The two LLM systems use seeded or recorded outputs."),
+            ("Monitor monthly", "Precision, recall, F1, PSI, Kolmogorov-Smirnov and chi-square drift tests and data quality rates are compared with each model's limits to raise graded breaches."),
+            ("Validate and remediate", "Validations and findings move through enforced workflows with independence rules and SHA-256 hashed evidence."),
+            ("Govern AI", "An AI system inventory, an EU AI Act readiness self-assessment, an LLM evaluation suite and outcome disparity tests."),
+            ("Map to regulation", "40 requirements and 21 controls mapped to models, with 15 automated control tests that run over live data."),
+            ("Report and audit", "An executive dashboard, packs for three committees as PDFs and an append-only, hash-chained audit trail."),
+        ],
+        "tech": ["Python, FastAPI, Pydantic", "SQLAlchemy 2.0 and Alembic", "PostgreSQL 16 or SQLite", "pandas, NumPy, SciPy, scikit-learn", "ReportLab", "React 18, TypeScript, Tailwind CSS, Plotly", "pytest", "Docker Compose and GitHub Actions"],
+        "decisions": [
+            ("Analytics are pure functions", "Metrics, PSI and drift tests have no database or framework imports, so each one is tested against values worked out by hand."),
+            ("The server enforces every rule", "The interface hides buttons a user cannot use, but the API checks again: a validator who owns a model cannot validate it, and a finding cannot close without remediation evidence and an independent validator."),
+            ("Real detection models, not canned numbers", "Monitoring reads what the models actually scored. Only the two LLM systems use seeded or recorded outputs, and the app labels them that way."),
+            ("A tamper-evident audit trail", "Each event stores a SHA-256 hash chained to the previous event, database triggers block updates and deletes, and a verify endpoint recomputes the whole chain."),
+            ("Current guidance, no compliance claims", "Controls map to the April 2026 interagency model risk guidance (SR 26-2 / OCC 2026-13), with SR 11-7 and OCC 2011-12 recorded as superseded. The EU AI Act module is an internal readiness self-assessment, not a certification."),
+        ],
+        "tests": ("75 pytest cases", ["Metric, PSI and drift calculations against hand-computed values", "Threshold breaches and severity grading", "Validation and finding workflows, including independence rules", "AI assessment, an LLM evaluator that catches every planted defect, and disparity testing", "Regulatory mapping, control tests and PDF content", "Audit chain tamper detection", "One end-to-end workflow from drift to committee report", "Run in CI on Python 3.9, Python 3.12 and PostgreSQL 16, plus a Docker Compose start-up check"]),
+        "results": ["Gradient boosting beats the rules engine on precision by roughly three times, and both lose recall when launderers change behaviour", "Suspicious activity model recall falls from 99.6% to 81.7% under drift, past its warning limit, with a channel input PSI of 0.156", "9 of 15 control tests pass; the six exceptions point at real issues such as overdue revalidations and an AI pilot running without an approved assessment", "The LLM evaluator catches all 17 planted defects, passes all 38 clean answers and fails the production research assistant at an 11.8% hallucination rate"],
+        "limits": ["Candela Bank and all of its data are synthetic; recall can be measured only because the generator knows the ground truth", "The two LLM systems are simulated or replayed from recorded responses, not live model calls", "Assessments and control tests are internal governance tools, not certifications or legal opinions", "No hosted demo: it needs a backend and database, so it runs locally or with Docker Compose", "Demo sign-in with synthetic users; no single sign-on"],
+        "next": ["An import format so a bank can load its own scored records", "Single sign-on and access rules per legal entity", "A hosted read-only demo"],
+        "docs": [("Architecture", "docs/ARCHITECTURE.md"), ("Validation methodology", "docs/VALIDATION_METHODOLOGY.md"), ("Model governance", "docs/MODEL_GOVERNANCE.md"), ("AI governance", "docs/AI_GOVERNANCE.md"), ("Regulatory mapping", "docs/REGULATORY_MAPPING.md")],
+    },
+    {
         "slug": "trace-desk",
         "title": "Trace Desk: USDT Investigations",
         "pillar": "Blockchain intelligence",
@@ -354,10 +397,17 @@ def render(s: dict) -> str:
     out.append(f'<p class="eyebrow">Technical case study · {esc(s["pillar"])}</p>')
     out.append(f"<h1>{esc(s['title'])}</h1>")
     out.append(f'<p class="lede">{esc(s["oneliner"])}</p>')
-    links = [f'<a class="btn primary" href="{s["demo"]}">Live demo</a>', f'<a class="btn ghost" href="{s["repo"]}">Source code</a>']
+    links = [f'<a class="btn primary" href="{s["demo"]}">Live demo</a>'] if s.get("demo") else []
+    links.append(f'<a class="btn {"ghost" if s.get("demo") else "primary"}" href="{s["repo"]}">Source code</a>')
     links += [f'<a class="btn ghost" href="{u}">{esc(t)}</a>' for t, u in s.get("extra_links", [])]
     links.append(f'<a class="btn ghost" href="mailto:{EMAIL}">Contact</a>')
     out.append(f'<div class="actions">{"".join(links)}</div>')
+    if s.get("tour"):
+        src, still, alt, caption = s["tour"]
+        out.append('<figure class="card" id="tour" style="margin:22px 0;padding:0;overflow:hidden">'
+                   f'<picture><source srcset="/assets/projects/{still}" media="(prefers-reduced-motion: reduce)">'
+                   f'<img src="/assets/projects/{src}" alt="{esc(alt)}" width="960" height="640" loading="lazy" decoding="async" style="display:block;width:100%;height:auto"></picture>'
+                   f'<figcaption style="padding:12px 18px;font-size:.9rem;color:var(--muted)">{esc(caption)}</figcaption></figure>')
     out.append('<div class="glance">' + "".join(f'<div class="card"><b>{esc(v)}</b><span>{esc(k)}</span></div>' for v, k in s["glance"]) + "</div>")
     out.append('<section class="cs card"><div class="summary-grid">'
                f'<div><h3>Who it is for</h3><p>{esc(s["who"])}</p></div>'
@@ -396,7 +446,8 @@ def render_index() -> str:
     for s in STUDIES:
         out.append(f'<div class="card"><p class="eyebrow">{esc(s["pillar"])}</p><h2>{esc(s["title"])}</h2><p>{esc(s["oneliner"])}</p>'
                    f'<div class="actions"><a class="btn primary" href="/case-studies/{s["slug"]}.html">Read case study</a>'
-                   f'<a class="btn ghost" href="{s["demo"]}">Live demo</a><a class="btn ghost" href="{s["repo"]}">Source</a></div></div>')
+                   + (f'<a class="btn ghost" href="{s["demo"]}">Live demo</a>' if s.get("demo") else "")
+                   + f'<a class="btn ghost" href="{s["repo"]}">Source</a></div></div>')
     out.append("</div>")
     out.append(contact_band())
     out.append('</main><footer><a href="/">Back to portfolio</a></footer></body>\n</html>\n')
