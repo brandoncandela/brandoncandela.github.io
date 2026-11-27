@@ -16,7 +16,7 @@
     <div class="pillars">
       <article class="pillar"><span class="num">01</span><h3>AI-assisted investigations</h3><p>Case tooling that keeps evidence, decisions and QC in one place. At IBM I streamlined GenAI-assisted KYC workflows that cut investigation cycle time by 40%.</p><p class="plinks"><a href="/case-studies/aml-backlog-command-center.html">Backlog Command Center</a><a href="/case-studies/sanctions-review-desk.html">Sanctions Desk</a><a href="/case-studies/adverse-media-review-desk.html">Adverse Media Desk</a></p></article>
       <article class="pillar"><span class="num">02</span><h3>Blockchain intelligence</h3><p>OFAC wallet screening and USDT tracing on Tron and Ethereum from raw node data, with every number traceable to a transaction.</p><p class="plinks"><a href="/case-studies/crypto-exchange-monitoring-lab.html">Crypto Exchange Lab</a><a href="/case-studies/trace-desk.html">Trace Desk</a></p></article>
-      <article class="pillar"><span class="num">03</span><h3>Fintech risk infrastructure</h3><p>Monitoring rules in SQL, fraud controls tuned against analyst capacity and payments risk economics, each tested with measured precision and recall.</p><p class="plinks"><a href="/case-studies/fraud-intelligence-control-lab.html">Fraud Lab</a><a href="/case-studies/sql-fincrime-lab.html">SQL Lab</a><a href="/case-studies/payments-strategy-lab.html">Payments Lab</a></p></article>
+      <article class="pillar"><span class="num">03</span><h3>Fintech risk infrastructure</h3><p>Monitoring rules in SQL, fraud controls tuned against analyst capacity and payments risk economics, each tested with measured precision and recall.</p><p class="plinks"><a href="/case-studies/fraud-intelligence-control-lab.html">Fraud Lab</a><a href="/case-studies/sql-fincrime-lab.html">SQL Lab</a><a href="/case-studies/payments-strategy-lab.html">Payments Lab</a><a href="/case-studies/modelguard.html">ModelGuard</a></p></article>
     </div>
   </section>
 
@@ -24,7 +24,7 @@
     <div class="section-intro">
       <div>
         <h2 id="projects-title">Flagship builds</h2>
-        <p class="lede">Designed, built and tested end to end. Each one has a live demo, its source and a technical case study covering architecture, decisions, tests and limits.</p>
+        <p class="lede">Designed, built and tested end to end. Each one has its source, a technical case study covering architecture, decisions, tests and limits, and a live demo or a recorded tour.</p>
       </div>
     </div>
     <div class="flagships">
@@ -59,6 +59,17 @@
           <dl class="pbr"><div><dt>Problem</dt><dd>A payments platform needs to change a fraud control without flooding a queue of 8 daily reviews.</dd></div><div><dt>Built</dt><dd>SQL feature engineering, an auditable point score, a capacity-aware threshold console and link analysis.</dd></div><div><dt>Result</dt><dd>At score 40: 87.5% precision, 100% recall, inside daily capacity.</dd></div></dl>
           <ul class="stack"><li>Python</li><li>SQL</li><li>Link analysis</li><li>7 tests</li></ul>
           <div class="cta-row"><a class="btn" href="/fraud-intelligence-control-lab/">Live demo</a><a class="btn ghost" href="/case-studies/fraud-intelligence-control-lab.html">Case study</a><a class="btn ghost" href="https://github.com/brandoncandela/fraud-intelligence-control-lab">Source</a></div>
+        </div>
+      </article>
+      <article class="fcard">
+        <a class="shot" href="/case-studies/modelguard.html#tour" tabindex="-1" aria-hidden="true"><picture style="display:contents"><source srcset="assets/projects/modelguard.jpg" media="(prefers-reduced-motion: reduce)"><img src="assets/projects/modelguard-tour-card.gif" width="720" height="450" alt="" loading="lazy" decoding="async"></picture></a>
+        <div class="fbody">
+          <p class="kicker">Model risk and AI governance · Full stack</p>
+          <h3>ModelGuard</h3>
+          <p class="what">A working platform that inventories, monitors, validates and reports on ten financial crime models and ten AI systems.</p>
+          <dl class="pbr"><div><dt>Problem</dt><dd>Model risk teams must prove every model is inventoried, validated and within its limits, but the evidence lives in spreadsheets and slide decks.</dd></div><div><dt>Built</dt><dd>A FastAPI and React app over one database: monthly drift monitoring, validation workflows, EU AI Act readiness, LLM evaluation and committee PDFs.</dd></div><div><dt>Result</dt><dd>Simulated drift shows up as graded breaches within seconds, and every committee figure traces to scored records.</dd></div></dl>
+          <ul class="stack"><li>Python</li><li>FastAPI</li><li>React</li><li>PostgreSQL</li><li>75 tests</li></ul>
+          <div class="cta-row"><a class="btn" href="/case-studies/modelguard.html#tour">Watch the tour</a><a class="btn ghost" href="/case-studies/modelguard.html">Case study</a><a class="btn ghost" href="https://github.com/brandoncandela/modelguard">Source</a></div>
         </div>
       </article>
     </div>
