@@ -764,3 +764,6 @@ footer { background:transparent; }
 
 /* Tour videos fill the card like the screenshot images do */
 .fcard .shot video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+
+/* <picture> wrappers should not change layout: the <img> inside keeps its existing sizing rules */
+.shot picture, .gallery picture, .hero-content picture { display: contents; }
