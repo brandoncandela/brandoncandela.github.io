@@ -138,7 +138,7 @@ STUDIES = [
         "demo": None,
         "repo": "https://github.com/brandoncandela/modelguard",
         "image": "modelguard.jpg",
-        "tour": ("modelguard-tour.gif", "modelguard.jpg",
+        "tour": ("modelguard-tour", "modelguard-tour-poster.jpg",
                  "A tour of ModelGuard: executive overview, model inventory, monitoring, a simulated month of severe drift creating new breaches, validation, EU AI Act readiness, LLM evaluation, committee reporting and the audit trail",
                  "Recorded from the running app with its seeded data. ModelGuard needs a backend and database, so it runs locally or with Docker Compose rather than as a hosted demo."),
         "extra_links": [("Sample committee report (PDF)", "https://github.com/brandoncandela/modelguard/blob/main/docs/sample-reports/executive-committee-report.pdf")],
@@ -172,6 +172,44 @@ STUDIES = [
         "limits": ["Candela Bank and all of its data are synthetic; recall can be measured only because the generator knows the ground truth", "The two LLM systems are simulated or replayed from recorded responses, not live model calls", "Assessments and control tests are internal governance tools, not certifications or legal opinions", "No hosted demo: it needs a backend and database, so it runs locally or with Docker Compose", "Demo sign-in with synthetic users; no single sign-on"],
         "next": ["An import format so a bank can load its own scored records", "Single sign-on and access rules per legal entity", "A hosted read-only demo"],
         "docs": [("Architecture", "docs/ARCHITECTURE.md"), ("Validation methodology", "docs/VALIDATION_METHODOLOGY.md"), ("Model governance", "docs/MODEL_GOVERNANCE.md"), ("AI governance", "docs/AI_GOVERNANCE.md"), ("Regulatory mapping", "docs/REGULATORY_MAPPING.md")],
+    },
+    {
+        "slug": "ai-sar-narrative-lab",
+        "title": "AI SAR Narrative Lab",
+        "pillar": "AI-assisted investigations",
+        "oneliner": "Claude drafts Suspicious Activity Report narratives where every sentence cites its evidence, plain rules check every amount, date and citation, and a person has the final say.",
+        "demo": "/ai-sar-narrative-lab/",
+        "repo": "https://github.com/brandoncandela/ai-sar-narrative-lab",
+        "image": "ai-sar-narrative-lab.jpg",
+        "glance": [("24", "evidence packets across 9 typologies"), ("7 + 4", "hard checks and warnings on every draft"), ("8", "planted error types that test the checker"), ("49", "automated tests")],
+        "who": "Financial crime investigators, SAR quality control teams and compliance leaders deciding how to use language models safely.",
+        "built": "Evidence packets with citable IDs, a structured-output drafting call, a rule-based evaluator, a fault injector that tests the evaluator, and a human review log.",
+        "result": "Drafts have not been generated yet, so no pass rates are published. Every figure will come from the committed results files once they are.",
+        "problem": [
+            "Writing the narrative is the slowest part of a Suspicious Activity Report. A language model can write a first draft in seconds, but an investigator cannot file a sentence they cannot check, and a fluent draft can hide an invented amount or date.",
+            "The question is not whether a model can write, but how a bank would know which sentences to trust.",
+        ],
+        "flow": [
+            ("Build evidence packets", "24 cases picked with a fixed seed from the AML Backlog Command Center. Every fact gets an ID a draft can cite."),
+            ("Draft with Claude", "Structured output forces five sections (who, what, when, where, why) and a citations list on every sentence."),
+            ("Check with rules", "Every amount, date, count, branch and account ending must appear in the records the sentence cites."),
+            ("Test the tester", "Plant one known error per copy of a draft and confirm the right rule fires."),
+            ("Human review", "Accept, edit or reject with a reason; edits are rescored and disagreements with the rules are logged."),
+            ("Static demo", "Drafts and scores committed as JSON; the page never calls a model."),
+        ],
+        "tech": ["Python 3", "Claude API (structured output)", "JSON Schema", "unittest", "Vanilla JavaScript", "Content Security Policy"],
+        "decisions": [
+            ("Citations are required, not optional", "The output schema makes every sentence carry its evidence IDs, so a reviewer can check any claim in one click."),
+            ("Rules check the model, not another model", "The evaluator is plain code, so the same draft always gets the same result and anyone can read why a sentence failed."),
+            ("Test the checker with planted errors", "Eight kinds of known mistakes are injected on purpose to prove each rule actually catches what it claims to."),
+            ("No API key outside one machine", "Only the local generator calls the API. The public demo is static, its Content Security Policy blocks outside connections, and a test scans the repo for keys."),
+            ("A person signs off", "The model drafts and the rules flag; the reviewer decides, and every disagreement with the rules is recorded."),
+        ],
+        "tests": ("49 unittest cases", ["The packet builder rebuilds byte for byte and never exposes a full account number", "Every evaluator rule with passing and failing sentences", "The fault injector plants each error and the right rule catches it", "Refusals, cut-off replies and bad JSON from the API are recorded, not hidden", "Review validation, disagreement scoring and the secret checks"]),
+        "results": ["Pending: the 24 drafts are generated offline and have not been run yet", "Pass rates and planted-error catch rates will be published from results/evaluation.json and results/faults.json"],
+        "limits": ["Synthetic data, and each alert carries one amount, so drafts cite alerts rather than individual transactions", "Rules can confirm a number is in the evidence, not whether the reasoning is convincing; that is the reviewer's job", "Amounts written in words are not checked", "A drafting aid only: people at a bank own the filing decision"],
+        "next": ["Generate the drafts and publish pass rates and catch rates", "Transaction-level citations once alerts carry their underlying transactions", "Agreement tracking across several reviewers"],
+        "docs": [],
     },
     {
         "slug": "trace-desk",
@@ -367,6 +405,9 @@ def head(title: str, desc: str, path: str, image: str) -> str:
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#fbfcff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <title>{esc(title)} | Brandon Candela</title>
 <meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="{url}">
@@ -404,9 +445,11 @@ def render(s: dict) -> str:
     out.append(f'<div class="actions">{"".join(links)}</div>')
     if s.get("tour"):
         src, still, alt, caption = s["tour"]
+        # Video plays only when motion is allowed (assets/motion-video.js); the description stays available to screen readers.
         out.append('<figure class="card" id="tour" style="margin:22px 0;padding:0;overflow:hidden">'
-                   f'<picture><source srcset="/assets/projects/{still}" media="(prefers-reduced-motion: reduce)">'
-                   f'<img src="/assets/projects/{src}" alt="{esc(alt)}" width="960" height="640" loading="lazy" decoding="async" style="display:block;width:100%;height:auto"></picture>'
+                   f'<video data-autoplay muted loop playsinline preload="none" poster="/assets/projects/{still}" width="960" height="640" aria-hidden="true" style="display:block;width:100%;height:auto">'
+                   f'<source src="/assets/projects/{src}.webm" type="video/webm"><source src="/assets/projects/{src}.mp4" type="video/mp4"></video>'
+                   f'<p class="sr-only">{esc(alt)}</p>'
                    f'<figcaption style="padding:12px 18px;font-size:.9rem;color:var(--muted)">{esc(caption)}</figcaption></figure>')
     out.append('<div class="glance">' + "".join(f'<div class="card"><b>{esc(v)}</b><span>{esc(k)}</span></div>' for v, k in s["glance"]) + "</div>")
     out.append('<section class="cs card"><div class="summary-grid">'
@@ -433,6 +476,8 @@ def render(s: dict) -> str:
     out.append(contact_band())
     out.append("</main>")
     out.append('<footer>All data in this project is synthetic or public. Built and tested by Brandon Candela. <a href="/case-studies/">All case studies</a> · <a href="/">Portfolio</a></footer>')
+    if s.get("tour"):
+        out.append('<script src="/assets/motion-video.js" defer></script>')
     out.append("</body>\n</html>\n")
     return "\n".join(out)
 
