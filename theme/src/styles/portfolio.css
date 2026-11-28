@@ -826,3 +826,15 @@ footer { background:transparent; }
   .btn.ghost:hover { background: rgb(255 255 255 / .16); color: #fff; }
   .fcard .shot { background: #1c1c1e; }
 }
+
+/* One primary action per card; case study and source become quieter text links */
+.cta-row { align-items: center; gap: 6px 18px; }
+.tlink { display: inline-flex; align-items: center; min-height: 32px; padding: 0 2px; color: #0066cc; font-size: .9rem; font-weight: 600; text-decoration: none; }
+.tlink:hover { color: #005bb8; text-decoration: underline; }
+/* Give the LinkedIn link under Experience a comfortable tap target */
+#experience > p.small { margin-top: 20px; }
+#experience > p.small a { display: inline-flex; align-items: center; min-height: 32px; }
+@media (prefers-color-scheme: dark) {
+  .tlink { color: #6cb4ff; }
+  .tlink:hover { color: #9ecbff; }
+}
