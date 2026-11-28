@@ -767,3 +767,62 @@ footer { background:transparent; }
 
 /* <picture> wrappers should not change layout: the <img> inside keeps its existing sizing rules */
 .shot picture, .gallery picture, .hero-content picture { display: contents; }
+
+/* ---- Contrast fix (light mode): secondary labels to #6e6e73, which passes WCAG AA (4.5:1) on white ---- */
+.pbr dt, .res b { color: #6e6e73; }
+.tags, .when { color: #5d5d64; }
+
+/* ---- Dark mode: follows the system setting, no toggle ---- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --canvas: #000; --canvas-deep: #0a0a0c; --surface: #1c1c1e; --surface-raised: #2c2c2e; --surface-soft: #1c1c1e;
+    --line: rgb(255 255 255 / .12); --line-strong: rgb(255 255 255 / .22);
+    --ink: #f5f5f7; --muted: #a1a1a6; --subtle: #a1a1a6;
+    --signal: #4da3ff; --signal-strong: #7ab8ff; --signal-ink: #000;
+    --evidence: #c7c7cc; --evidence-soft: #d1d1d6;
+    --glass: rgb(28 28 30 / .76);
+  }
+  body { background: #000; color: var(--ink); }
+  body::before, body::after { opacity: .55; }
+  .site-nav { background: rgb(0 0 0 / .72); border-bottom-color: rgb(255 255 255 / .1); }
+  .brand, .nav-links a:hover { color: var(--ink); }
+
+  /* Hero */
+  .apple-hero h1 { background-image: linear-gradient(100deg, #f5f5f7 0%, #9ecbff 30%, #5aa9ff 50%, #a5b4fc 70%, #f5f5f7 100%); }
+  .apple-hero .hero-title { color: #f5f5f7; }
+  .hero-pillars { color: #6cb4ff; }
+  .hero-cred, .hero-tagline { color: #a1a1a6; }
+  .hero-portrait { border-color: #1c1c1e; box-shadow: 0 0 0 6px rgb(28 28 30 / .8), 0 18px 40px rgb(0 0 0 / .5); }
+  .status { color: #7fd3a0; }
+  .status::before { background: #4cc38a; }
+  .button { background: #f5f5f7; border-color: #f5f5f7; color: #1d1d1f; }
+  .button:hover { background: #fff; border-color: #fff; color: #000; }
+  .button.ghost { background: transparent; border-color: rgb(245 245 247 / .7); color: #f5f5f7; }
+  .button.ghost:hover { background: rgb(255 255 255 / .1); color: #fff; }
+
+  /* Surfaces that were plain white */
+  .proof, .project.flagship, .project.compact, .project:hover, .timeline, .panel, .sql, .note, .two-col > div, .community,
+  .pillar, .fcard, .mcard {
+    background: var(--glass); border-color: rgb(255 255 255 / .08);
+    box-shadow: 0 1px 0 rgb(255 255 255 / .04) inset, 0 12px 32px rgb(0 0 0 / .35);
+  }
+  .note:hover { background: #2c2c2e; }
+  .contact, .hire-strip { background: linear-gradient(135deg, rgb(28 38 64 / .92), rgb(36 30 64 / .92)); border-color: rgb(255 255 255 / .08); }
+  .pills span { background: rgb(77 163 255 / .16); color: #9ecbff; }
+  pre { background: #2c2c2e; color: #9ecbff; }
+  summary { color: #6cb4ff; }
+  .tags, .when, .pbr dt, .res b { color: #a1a1a6; }
+  .badge { background: #2c2c2e; color: #f5f5f7; }
+
+  /* Builder sections */
+  .kicker, .pillar .num, .plinks a { color: #6cb4ff; }
+  .what, .res, .hire-strip p, .more-title { color: #f5f5f7; }
+  .pillar p, .pbr dd, .mcard .what { color: #a1a1a6; }
+  .stack li { background: rgb(77 163 255 / .16); color: #9ecbff; }
+  .btn { background: #f5f5f7; color: #1d1d1f; }
+  .btn:hover { background: #fff; color: #000; }
+  .btn.ghost { background: rgb(255 255 255 / .1); color: #f5f5f7; }
+  .btn.ghost:hover { background: rgb(255 255 255 / .16); color: #fff; }
+  .fcard .shot { background: #1c1c1e; }
+}

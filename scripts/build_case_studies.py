@@ -405,6 +405,9 @@ def head(title: str, desc: str, path: str, image: str) -> str:
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#fbfcff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <title>{esc(title)} | Brandon Candela</title>
 <meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="{url}">

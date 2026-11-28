@@ -5,7 +5,7 @@
   --bg: #fbfcff;
   --ink: #1d1d1f;
   --muted: #55555d;
-  --faint: #86868b;
+  --faint: #6e6e73;
   --blue: #0066cc;
   --blue-strong: #005bb8;
   --line: rgb(29 29 31 / .09);
@@ -145,3 +145,27 @@ footer { max-width: 1080px; margin: 0 auto; padding: 28px 24px 48px; color: var(
 }
 
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* ---- Dark mode: follows the system setting, no toggle ---- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #000; --ink: #f5f5f7; --muted: #a1a1a6; --faint: #98989d;
+    --blue: #4da3ff; --blue-strong: #7ab8ff;
+    --line: rgb(255 255 255 / .12); --glass: rgb(28 28 30 / .78);
+    --shadow: 0 1px 0 rgb(255 255 255 / .04) inset, 0 12px 32px rgb(0 0 0 / .4);
+  }
+  body::before, body::after { opacity: .5; }
+  nav { background: rgb(0 0 0 / .72); }
+  h1 { background-image: linear-gradient(100deg, #f5f5f7 0%, #9ecbff 45%, #5aa9ff 75%, #a5b4fc 100%); }
+  .card { border-color: rgb(255 255 255 / .08); }
+  .btn.primary { background: #f5f5f7; color: #1d1d1f; }
+  .btn.primary:hover { background: #fff; color: #000; }
+  .btn.ghost { background: rgb(255 255 255 / .1); color: #f5f5f7; }
+  .btn.ghost:hover { background: rgb(255 255 255 / .16); color: #fff; }
+  .flow li, .decisions div { background: #2c2c2e; border-color: rgb(255 255 255 / .08); }
+  .chips li { background: rgb(77 163 255 / .16); color: #9ecbff; }
+  code { background: rgb(77 163 255 / .14); color: #9ecbff; }
+  .callout { background: rgb(77 163 255 / .12); }
+  body > article .cta { background: var(--glass); }
+}
