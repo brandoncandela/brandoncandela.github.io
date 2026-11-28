@@ -6,6 +6,7 @@ import portfolio from '../content/portfolio.html?raw';
 import footer from '../content/footer.html?raw';
 ---
 <Layout><Fragment set:html={navigation}/><main id="main" class="wrap"><Hero/><Fragment set:html={portfolio}/></main><Fragment set:html={footer}/>
+<script is:inline src="/assets/motion-video.js" defer></script>
 <script is:inline>
 const filters = document.querySelectorAll('[data-filter]');
 filters.forEach(button => button.addEventListener('click', () => {

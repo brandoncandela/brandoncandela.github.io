@@ -138,7 +138,7 @@ STUDIES = [
         "demo": None,
         "repo": "https://github.com/brandoncandela/modelguard",
         "image": "modelguard.jpg",
-        "tour": ("modelguard-tour.gif", "modelguard.jpg",
+        "tour": ("modelguard-tour", "modelguard-tour-poster.jpg",
                  "A tour of ModelGuard: executive overview, model inventory, monitoring, a simulated month of severe drift creating new breaches, validation, EU AI Act readiness, LLM evaluation, committee reporting and the audit trail",
                  "Recorded from the running app with its seeded data. ModelGuard needs a backend and database, so it runs locally or with Docker Compose rather than as a hosted demo."),
         "extra_links": [("Sample committee report (PDF)", "https://github.com/brandoncandela/modelguard/blob/main/docs/sample-reports/executive-committee-report.pdf")],
@@ -404,9 +404,11 @@ def render(s: dict) -> str:
     out.append(f'<div class="actions">{"".join(links)}</div>')
     if s.get("tour"):
         src, still, alt, caption = s["tour"]
+        # Video plays only when motion is allowed (assets/motion-video.js); the description stays available to screen readers.
         out.append('<figure class="card" id="tour" style="margin:22px 0;padding:0;overflow:hidden">'
-                   f'<picture><source srcset="/assets/projects/{still}" media="(prefers-reduced-motion: reduce)">'
-                   f'<img src="/assets/projects/{src}" alt="{esc(alt)}" width="960" height="640" loading="lazy" decoding="async" style="display:block;width:100%;height:auto"></picture>'
+                   f'<video data-autoplay muted loop playsinline preload="none" poster="/assets/projects/{still}" width="960" height="640" aria-hidden="true" style="display:block;width:100%;height:auto">'
+                   f'<source src="/assets/projects/{src}.webm" type="video/webm"><source src="/assets/projects/{src}.mp4" type="video/mp4"></video>'
+                   f'<p class="sr-only">{esc(alt)}</p>'
                    f'<figcaption style="padding:12px 18px;font-size:.9rem;color:var(--muted)">{esc(caption)}</figcaption></figure>')
     out.append('<div class="glance">' + "".join(f'<div class="card"><b>{esc(v)}</b><span>{esc(k)}</span></div>' for v, k in s["glance"]) + "</div>")
     out.append('<section class="cs card"><div class="summary-grid">'
@@ -433,6 +435,8 @@ def render(s: dict) -> str:
     out.append(contact_band())
     out.append("</main>")
     out.append('<footer>All data in this project is synthetic or public. Built and tested by Brandon Candela. <a href="/case-studies/">All case studies</a> · <a href="/">Portfolio</a></footer>')
+    if s.get("tour"):
+        out.append('<script src="/assets/motion-video.js" defer></script>')
     out.append("</body>\n</html>\n")
     return "\n".join(out)
 
